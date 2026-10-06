@@ -3,14 +3,19 @@
    * Values are copied as-is from Figma (codeconnect playground → Input page, node 2:7)
    * and intentionally NOT tokenized.
    *
+   * The error state is code-only: it does not exist in Figma yet.
+   *
    * @typedef {Object} Props
    * @property {string} [value]
    * @property {string} [placeholder]
+   * @property {string} [error] Error message; when set, the input renders in its error state.
    * @property {(value: string) => void} [onsubmit]
    */
 
   /** @type {Props} */
-  let { value = $bindable(''), placeholder = 'What are we analysing today..?', onsubmit } = $props();
+  let { value = $bindable(''), placeholder = 'What are we analysing today..?', error = '', onsubmit } = $props();
+
+  const errorId = $props.id();
 
   /** @param {SubmitEvent} e */
   function handleSubmit(e) {
@@ -19,12 +24,28 @@
   }
 </script>
 
-<form class="input" onsubmit={handleSubmit}>
-  <input class="input__field" type="text" bind:value {placeholder} />
-  <button class="input__btn" type="submit" aria-label="Submit">↑</button>
-</form>
+<div class="input-wrap">
+  <form class="input" class:input--error={error} onsubmit={handleSubmit}>
+    <input
+      class="input__field"
+      type="text"
+      bind:value
+      {placeholder}
+      aria-invalid={error ? 'true' : undefined}
+      aria-describedby={error ? errorId : undefined}
+    />
+    <button class="input__btn" type="submit" aria-label="Submit">↑</button>
+  </form>
+  {#if error}
+    <p class="input__error" id={errorId} role="alert">{error}</p>
+  {/if}
+</div>
 
 <style>
+  .input-wrap {
+    width: 430px;
+  }
+
   .input {
     box-sizing: border-box;
     display: flex;
@@ -36,6 +57,13 @@
     border-radius: 16px;
     background: #e8e8e8;
   }
+
+  /* Inset ring instead of a border so the error state doesn't shift layout. */
+  .input--error {
+    background: #fdecec;
+    box-shadow: inset 0 0 0 1px #d92d20;
+  }
+  .input--error .input__btn { background: #fbdcdc; color: #d92d20; }
 
   .input__field {
     flex: 1;
@@ -63,5 +91,14 @@
     font-weight: 400;
     font-size: 16px;
     cursor: pointer;
+  }
+
+  .input__error {
+    margin: 6px 0 0;
+    padding-left: 20px;
+    color: #b42318;
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
   }
 </style>
