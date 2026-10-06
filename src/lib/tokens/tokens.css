@@ -3,8 +3,8 @@
  * (e.g. Figma "color/primary/500" -> --color-primary-500).
  */
 :root {
-  --color-primary-500: #4f46e5;
-  --color-primary-600: #4338ca;
+  --color-primary-500: #e546a5;
+  --color-primary-600: #9b0dc6;
   --color-neutral-0: #ffffff;
   --color-neutral-100: #f3f4f6;
   --color-neutral-900: #111827;
