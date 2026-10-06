@@ -1,3 +1,4 @@
+import { fn } from 'storybook/test';
 import Button from './Button.svelte';
 
 export default {
@@ -7,9 +8,8 @@ export default {
   argTypes: {
     variant: { control: 'select', options: ['primary', 'secondary'] },
     size: { control: 'select', options: ['sm', 'md'] },
-    onClick: { action: 'click' },
   },
-  args: { label: 'Button', variant: 'primary', size: 'md', disabled: false },
+  args: { label: 'Button', variant: 'primary', size: 'md', disabled: false, onclick: fn() },
 };
 
 export const Primary = {};

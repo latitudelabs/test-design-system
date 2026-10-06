@@ -1,18 +1,18 @@
 <script>
-  /** @type {'primary' | 'secondary'} */
-  export let variant = 'primary';
-  /** @type {'sm' | 'md'} */
-  export let size = 'md';
-  export let label = 'Button';
-  export let disabled = false;
+  /**
+   * @typedef {Object} Props
+   * @property {'primary' | 'secondary'} [variant]
+   * @property {'sm' | 'md'} [size]
+   * @property {string} [label]
+   * @property {boolean} [disabled]
+   * @property {(e: MouseEvent) => void} [onclick]
+   */
+
+  /** @type {Props} */
+  let { variant = 'primary', size = 'md', label = 'Button', disabled = false, onclick } = $props();
 </script>
 
-<button
-  type="button"
-  class="btn btn--{variant} btn--{size}"
-  {disabled}
-  on:click
->
+<button type="button" class="btn btn--{variant} btn--{size}" {disabled} {onclick}>
   {label}
 </button>
 
