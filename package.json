@@ -1,0 +1,24 @@
+{
+  "name": "codeconnect",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.24",
+    "@storybook/addon-interactions": "^7.6.24",
+    "@storybook/blocks": "^7.6.24",
+    "@storybook/svelte": "^7.6.24",
+    "@storybook/svelte-vite": "^7.6.24",
+    "@sveltejs/vite-plugin-svelte": "^2.5.3",
+    "storybook": "^7.6.24",
+    "svelte": "^3.59.2",
+    "vite": "^4.5.14"
+  }
+}

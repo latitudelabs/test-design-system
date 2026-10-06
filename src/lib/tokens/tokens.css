@@ -1,0 +1,23 @@
+/*
+ * Design tokens. Keep names in sync with Figma variables
+ * (e.g. Figma "color/primary/500" -> --color-primary-500).
+ */
+:root {
+  --color-primary-500: #4f46e5;
+  --color-primary-600: #4338ca;
+  --color-neutral-0: #ffffff;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-900: #111827;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+
+  --radius-md: 8px;
+
+  --font-family-base: Inter, system-ui, -apple-system, sans-serif;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+}
