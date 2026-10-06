@@ -20,4 +20,22 @@
   --font-family-base: Inter, system-ui, -apple-system, sans-serif;
   --font-size-sm: 14px;
   --font-size-md: 16px;
+
+  /*
+   * Text styles. Keep in sync with Figma text styles
+   * (e.g. Figma text style "Base" -> --text-base-* and .text-base).
+   */
+  --text-base-font-family: var(--font-family-base);
+  --text-base-font-weight: 500;
+  --text-base-font-size: var(--font-size-md);
+  --text-base-line-height: 1.3;
+  --text-base-letter-spacing: -0.02em;
+}
+
+.text-base {
+  font-family: var(--text-base-font-family);
+  font-weight: var(--text-base-font-weight);
+  font-size: var(--text-base-font-size);
+  line-height: var(--text-base-line-height);
+  letter-spacing: var(--text-base-letter-spacing);
 }

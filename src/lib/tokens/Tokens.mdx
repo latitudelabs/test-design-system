@@ -81,7 +81,38 @@ Names map 1:1 to the **Tokens** collection in the Figma file.
   )}
 />
 
-## Typography
+## Text styles
+
+export const textStyles = [...new Set(group('--text-').map((t) => t.name.match(/^--text-(.+?)-(font|line|letter)/)[1]))];
+export const capitalize = (s) => s[0].toUpperCase() + s.slice(1);
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={cell}>Preview</th>
+      <th style={cell}>CSS class</th>
+      <th style={cell}>Figma text style</th>
+      <th style={cell}>Properties</th>
+    </tr>
+  </thead>
+  <tbody>
+    {textStyles.map((name) => (
+      <tr key={name}>
+        <td style={cell}>
+          {/* Inline font-family: Storybook's docs typography otherwise overrides the class here. */}
+          <span className={`text-${name}`} style={{ fontFamily: `var(--text-${name}-font-family)` }}>What are we analysing today..?</span>
+        </td>
+        <td style={{ ...cell, ...code }}>{`.text-${name}`}</td>
+        <td style={{ ...cell, ...code }}>{capitalize(name)}</td>
+        <td style={{ ...cell, ...code, whiteSpace: 'pre' }}>
+          {group(`--text-${name}-`).map((t) => `${t.name.replace(`--text-${name}-`, '')}: ${t.value}`).join('\n')}
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+## Typography tokens
 
 <TokenTable
   prefix="--font-"
