@@ -1,15 +1,18 @@
-// url=https://www.figma.com/design/m2eh3Isz82XMQFQ38dLptm/codeconnect-playground?node-id=2-7
+// url=https://www.figma.com/design/m2eh3Isz82XMQFQ38dLptm/codeconnect-playground?node-id=7-21
 // source=src/lib/components/Input.svelte
 // component=Input
 import figma from 'figma'
 const instance = figma.selectedInstance
 
-// The Figma component has no properties yet, so read the placeholder from its text layer.
-const placeholderLayer = instance.findText('What are we analysing today..?')
-const placeholder = placeholderLayer && placeholderLayer.type === 'TEXT' ? placeholderLayer.textContent : ''
+const placeholder = instance.getString('Placeholder')
+const hasError = instance.getEnum('Error', {
+  'true': true,
+  'false': false,
+})
+const errorMessage = instance.getString('Error message')
 
 export default {
-  example: figma.code`<Input placeholder="${placeholder}" onsubmit={(value) => {}} />`,
+  example: figma.code`<Input placeholder="${placeholder}"${hasError ? figma.code` error="${errorMessage}"` : ''} onsubmit={(value) => {}} />`,
   imports: ["import Input from '$lib/components/Input.svelte'"],
   id: 'input',
   metadata: { nestable: true },
