@@ -1,0 +1,99 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import css from './tokens.css?raw';
+
+<Meta title="Foundations/Tokens" />
+
+export const tokens = [...css.matchAll(/(--[\w-]+):\s*([^;]+);/g)].map(([, name, value]) => ({
+  name,
+  value: value.trim(),
+  // --color-primary-500 -> color/primary/500, --font-size-sm -> font-size/sm
+  figma: name.startsWith('--color-')
+    ? name.slice(2).replaceAll('-', '/')
+    : name.slice(2).replace(/-([^-]+)$/, '/$1'),
+}));
+export const group = (prefix) => tokens.filter((t) => t.name.startsWith(prefix));
+export const colorFamilies = [...new Set(group('--color-').map((t) => t.name.split('-')[3]))];
+
+export const cell = { padding: '8px 12px', borderBottom: '1px solid #eee', textAlign: 'left', verticalAlign: 'middle' };
+export const code = { fontFamily: 'ui-monospace, monospace', fontSize: 13 };
+
+export const TokenTable = ({ prefix, preview }) => (
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr>
+        <th style={cell}>Preview</th>
+        <th style={cell}>CSS variable</th>
+        <th style={cell}>Figma variable</th>
+        <th style={cell}>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      {group(prefix).map((t) => (
+        <tr key={t.name}>
+          <td style={cell}>{preview(t)}</td>
+          <td style={{ ...cell, ...code }}>{`var(${t.name})`}</td>
+          <td style={{ ...cell, ...code }}>{t.figma}</td>
+          <td style={{ ...cell, ...code }}>{t.value}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
+
+# Design tokens
+
+Generated from `src/lib/tokens/tokens.css` at build time, so this page always shows what the code ships.
+Names map 1:1 to the **Tokens** collection in the Figma file.
+
+## Color
+
+<ColorPalette>
+  {colorFamilies.map((family) => (
+    <ColorItem
+      key={family}
+      title={family}
+      subtitle={`color/${family}/*`}
+      colors={Object.fromEntries(group(`--color-${family}-`).map((t) => [t.name.split('-').pop(), t.value]))}
+    />
+  ))}
+</ColorPalette>
+
+<TokenTable
+  prefix="--color-"
+  preview={(t) => (
+    <div style={{ width: 32, height: 32, borderRadius: 6, background: `var(${t.name})`, boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.1)' }} />
+  )}
+/>
+
+## Spacing
+
+<TokenTable
+  prefix="--space-"
+  preview={(t) => <div style={{ width: `var(${t.name})`, height: 16, background: 'var(--color-primary-500)', borderRadius: 2 }} />}
+/>
+
+## Radius
+
+<TokenTable
+  prefix="--radius-"
+  preview={(t) => (
+    <div style={{ width: 48, height: 32, borderRadius: `var(${t.name})`, background: 'var(--color-neutral-100)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.15)' }} />
+  )}
+/>
+
+## Typography
+
+<TokenTable
+  prefix="--font-"
+  preview={(t) => (
+    <span
+      style={{
+        fontFamily: t.name.startsWith('--font-family') ? `var(${t.name})` : 'var(--font-family-base)',
+        fontSize: t.name.startsWith('--font-size') ? `var(${t.name})` : 16,
+        fontWeight: 600,
+      }}
+    >
+      Aa
+    </span>
+  )}
+/>
