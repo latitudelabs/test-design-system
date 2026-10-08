@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { primitives, roles, resolve, byPrefix } from '../lib/tokens';
+import { primitives, roles, darkRoles, resolve } from '../lib/tokens';
 
 <Meta title="Foundations/Colors" />
 
@@ -61,11 +61,21 @@ Two layers:
 
 Use as Tailwind utilities: `bg-{role}`, `text-{role}`, `border-{role}`, e.g. `bg-card text-muted-foreground`.
 
+export const ref = (t) => mono(`${t.value.replace(/var\(--(.+)\)/, '$1')} · ${resolve(t.value)}`);
+export const dark = (name) => darkRoles.find((d) => d.name === name);
+
 <Table
-	columns={['', 'Role', 'Value', 'Use for']}
+	columns={['Light', 'Dark', 'Role', 'Light value', 'Dark value', 'Use for']}
 	rows={roles
-		.filter((t) => !t.name.startsWith('--sidebar') && t.name !== '--radius')
-		.map((t) => [<Swatch color={resolve(t.value)} />, mono(t.name.slice(2)), mono(`${t.value.replace(/var\(--(.+)\)/, '$1')} · ${resolve(t.value)}`), usage[t.name.slice(2)] ?? ''])}
+		.filter((t) => !t.name.startsWith('--sidebar') && !t.name.startsWith('--elevation') && t.name !== '--radius' && t.name !== 'color-scheme')
+		.map((t) => [
+			<Swatch color={resolve(t.value)} />,
+			<Swatch color={dark(t.name) ? resolve(dark(t.name).value) : resolve(t.value)} />,
+			mono(t.name.slice(2)),
+			ref(t),
+			dark(t.name) ? ref(dark(t.name)) : '',
+			usage[t.name.slice(2)] ?? '',
+		])}
 />
 
 ## Primitives
@@ -75,9 +85,15 @@ Use as Tailwind utilities: `bg-{role}`, `text-{role}`, `border-{role}`, e.g. `bg
 	rows={primitives.map((t) => [<Swatch color={t.value} />, mono(t.name), mono(t.value), t.comment ?? ''])}
 />
 
+## Dark theme
+
+Add `class="dark"` to `<html>` and every role switches. Components need no changes. In dark, surfaces get
+**lighter as they rise** (page `#111111` → card `#1a1a1a` → popover `#262626`) and the accent inverts to
+near-white. Use the toolbar's theme switch to preview any story in dark.
+
 ## Accessibility
 
-All text roles meet **WCAG AA (4.5:1)** on the backgrounds they're used on:
+All text roles meet **WCAG AA (4.5:1)** on the backgrounds they're used on. Light:
 
 <Table
 	columns={['Text', 'On', 'Contrast']}
@@ -87,6 +103,19 @@ All text roles meet **WCAG AA (4.5:1)** on the backgrounds they're used on:
 		['primary-foreground', 'primary', '15.1:1'],
 		['destructive', 'background / card', '5.9:1 / 6.6:1'],
 		['placeholder', 'input', '2.4:1 (placeholders and disabled only, exempt)'],
+	].map((r) => r.map((c, i) => (i < 2 ? mono(c) : c)))}
+/>
+
+Dark:
+
+<Table
+	columns={['Text', 'On', 'Contrast']}
+	rows={[
+		['foreground', 'background / card / popover', '16.9:1 / 15.6:1 / 13.5:1'],
+		['muted-foreground', 'background / card / popover', '7.5:1 / 6.9:1 / 6.0:1'],
+		['primary-foreground', 'primary', '15.6:1'],
+		['destructive', 'background / card', '6.8:1 / 6.3:1'],
+		['placeholder', 'input', '4.6:1'],
 	].map((r) => r.map((c, i) => (i < 2 ? mono(c) : c)))}
 />
 

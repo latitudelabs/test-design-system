@@ -73,6 +73,31 @@ export default defineConfig({ plugins: [tailwindcss(), sveltekit()] });
 </Card.Root>
 ```
 
+## Dark theme
+
+Every color role has a dark value. Toggle it with a `dark` class on `<html>`. The simplest way to follow the
+user's system setting (and remember their choice) is [mode-watcher](https://mode-watcher.svecosystem.com):
+
+```bash
+npm install mode-watcher
+```
+
+```svelte
+<!-- src/routes/+layout.svelte -->
+<script lang="ts">
+	import { ModeWatcher } from 'mode-watcher';
+	import '../app.css';
+
+	let { children } = $props();
+</script>
+
+<ModeWatcher />
+{@render children()}
+```
+
+Then `toggleMode()` / `setMode('dark')` from `mode-watcher` switch themes. Don't hand-pick dark colors
+(`dark:bg-[#222]`): the roles already handle it.
+
 ## Rules of thumb
 
 - **Use semantic tokens, never raw values.** Write `bg-card text-muted-foreground`, not `bg-white text-[#6a6a6a]`.

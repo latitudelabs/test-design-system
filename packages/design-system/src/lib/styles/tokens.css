@@ -1,25 +1,30 @@
 /*
  * Latitude design tokens — primitives.
  *
- * Raw brand colors (radius, shadow and type scales live in theme.css @theme). Components never use these directly: they go through the semantic
- * roles in theme.css (--primary, --muted-foreground, …). Mirrored in Figma as the
- * "Primitives" variable collection.
+ * Raw brand colors (radius, shadow and type scales live in theme.css @theme). Components never use these
+ * directly: they go through the semantic roles in theme.css (--primary, --muted-foreground, …), which map
+ * primitives per theme (light / dark). Mirrored in Figma as the "Primitives" variable collection.
  */
 :root {
-	/* Neutral scale — the UI is monochrome. */
+	/* Neutral scale — the UI is monochrome. Higher number = darker. */
 	--neutral-0: #ffffff;
 	--neutral-50: #f2f2f2;
 	--neutral-100: #e8e8e8;
 	--neutral-200: #d9d9d9;
-	--neutral-400: #979797; /* placeholder, icons, disabled only — fails AA for text */
+	--neutral-300: #a3a3a3;
+	--neutral-400: #979797; /* light placeholder, icons, disabled only — fails AA for text */
+	--neutral-500: #8e8e8e; /* dark placeholder — 4.6:1 on dark input */
 	--neutral-600: #6a6a6a;
+	--neutral-800: #333333;
+	--neutral-850: #262626;
 	--neutral-900: #1a1a1a;
-	--neutral-950: #262626;
+	--neutral-950: #111111;
 
 	/* Status */
-	--red-700: #b42318;
+	--red-400: #f97066; /* destructive on dark surfaces */
+	--red-700: #b42318; /* destructive on light surfaces */
 
-	/* Brand accent — reserved for AI and brand moments (avatar, highlights). */
+	/* Brand accent — reserved for AI and brand moments (avatar, highlights). Same in both themes. */
 	--brand-1: #a81022;
 	--brand-2: #d62450;
 	--brand-3: #f8672b;

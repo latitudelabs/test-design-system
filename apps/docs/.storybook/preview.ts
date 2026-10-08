@@ -1,16 +1,13 @@
 import type { Preview } from '@storybook/svelte-vite';
+import { withThemeByClassName } from '@storybook/addon-themes';
 import '../src/docs.css';
 
 const preview: Preview = {
 	parameters: {
 		layout: 'centered',
 		controls: { matchers: { color: /(background|color)$/i } },
-		backgrounds: {
-			options: {
-				page: { name: 'Page', value: '#f2f2f2' },
-				card: { name: 'Card', value: '#ffffff' },
-			},
-		},
+		// The canvas uses the theme's own `bg-background` (see docs.css), so it follows light/dark.
+		backgrounds: { disable: true },
 		options: {
 			storySort: {
 				order: ['Getting started', 'Foundations', ['Colors', 'Typography', 'Radius & elevation', 'Spacing', 'Brand'], 'Components', 'Patterns'],
@@ -18,7 +15,13 @@ const preview: Preview = {
 		},
 		a11y: { test: 'error' },
 	},
-	initialGlobals: { backgrounds: { value: 'page' } },
+	decorators: [
+		withThemeByClassName({
+			themes: { Light: '', Dark: 'dark' },
+			defaultTheme: 'Light',
+			parentSelector: 'html',
+		}),
+	],
 };
 
 export default preview;

@@ -13,7 +13,8 @@
 /* Scan the design system's own components for Tailwind classes. */
 @source '../';
 
-@custom-variant dark (&:is(.dark *));
+/* Dark theme: add class="dark" to <html> (or any ancestor). */
+@custom-variant dark (&:where(.dark, .dark *));
 
 /*
  * Semantic roles (shadcn-svelte naming). Components only use these.
@@ -26,7 +27,7 @@
 	--card-foreground: var(--neutral-900);
 	--popover: var(--neutral-0);
 	--popover-foreground: var(--neutral-900);
-	--primary: var(--neutral-950);
+	--primary: var(--neutral-850);
 	--primary-foreground: var(--neutral-0);
 	--secondary: var(--neutral-100);
 	--secondary-foreground: var(--neutral-900);
@@ -37,18 +38,66 @@
 	--destructive: var(--red-700);
 	--border: var(--neutral-200);
 	--input: var(--neutral-100);
-	--ring: var(--neutral-950);
+	--ring: var(--neutral-850);
 	--placeholder: var(--neutral-400);
 	--radius: 16px;
 
 	--sidebar: var(--neutral-50);
 	--sidebar-foreground: var(--neutral-900);
-	--sidebar-primary: var(--neutral-950);
+	--sidebar-primary: var(--neutral-850);
 	--sidebar-primary-foreground: var(--neutral-0);
 	--sidebar-accent: var(--neutral-100);
 	--sidebar-accent-foreground: var(--neutral-900);
 	--sidebar-border: var(--neutral-200);
-	--sidebar-ring: var(--neutral-950);
+	--sidebar-ring: var(--neutral-850);
+
+	/* Elevation colors (shadow geometry lives in @theme). */
+	--elevation-hairline: rgb(0 0 0 / 8%);
+	--elevation-raised-outline: rgb(0 0 0 / 8%);
+	--elevation-raised-drop: rgb(0 0 0 / 8%);
+
+	color-scheme: light;
+}
+
+/*
+ * Dark theme. Same roles, remapped: surfaces get lighter as they rise (page → card → popover)
+ * and the accent inverts to near-white. Mirrored in Figma as the "Dark" mode of "Theme".
+ */
+.dark {
+	--background: var(--neutral-950);
+	--foreground: var(--neutral-50);
+	--card: var(--neutral-900);
+	--card-foreground: var(--neutral-50);
+	--popover: var(--neutral-850);
+	--popover-foreground: var(--neutral-50);
+	--primary: var(--neutral-50);
+	--primary-foreground: var(--neutral-900);
+	--secondary: var(--neutral-850);
+	--secondary-foreground: var(--neutral-50);
+	--muted: var(--neutral-850);
+	--muted-foreground: var(--neutral-300);
+	--accent: var(--neutral-850);
+	--accent-foreground: var(--neutral-50);
+	--destructive: var(--red-400);
+	--border: var(--neutral-800);
+	--input: var(--neutral-850);
+	--ring: var(--neutral-50);
+	--placeholder: var(--neutral-500);
+
+	--sidebar: var(--neutral-900);
+	--sidebar-foreground: var(--neutral-50);
+	--sidebar-primary: var(--neutral-50);
+	--sidebar-primary-foreground: var(--neutral-900);
+	--sidebar-accent: var(--neutral-850);
+	--sidebar-accent-foreground: var(--neutral-50);
+	--sidebar-border: var(--neutral-800);
+	--sidebar-ring: var(--neutral-50);
+
+	--elevation-hairline: rgb(255 255 255 / 10%);
+	--elevation-raised-outline: rgb(255 255 255 / 10%);
+	--elevation-raised-drop: rgb(0 0 0 / 60%);
+
+	color-scheme: dark;
 }
 
 @theme inline {
@@ -112,8 +161,8 @@
 	--radius-xl: 24px;
 
 	/* Elevation: hairline outlines cards (instead of borders); raised floats panels. */
-	--shadow-hairline: 0 0 4px rgb(0 0 0 / 8%);
-	--shadow-raised: 0 0 2px rgb(0 0 0 / 8%), 0 4px 32px rgb(0 0 0 / 8%);
+	--shadow-hairline: 0 0 4px var(--elevation-hairline);
+	--shadow-raised: 0 0 2px var(--elevation-raised-outline), 0 4px 32px var(--elevation-raised-drop);
 }
 
 /* Brand gradient — AI and brand moments only. */

@@ -15,8 +15,10 @@ function parse(css: string, block: RegExp): Token[] {
 
 /** Raw brand values (tokens.css :root). */
 export const primitives = parse(tokensCss, /:root\s*\{([\s\S]*?)\n\}/);
-/** Semantic roles (theme.css :root). */
+/** Semantic roles, light theme (theme.css :root). */
 export const roles = parse(themeCss, /:root\s*\{([\s\S]*?)\n\}/);
+/** Semantic roles, dark theme (theme.css .dark). */
+export const darkRoles = parse(themeCss, /\.dark\s*\{([\s\S]*?)\n\}/);
 /** Tailwind theme (theme.css @theme inline). */
 export const theme = parse(themeCss, /@theme inline\s*\{([\s\S]*?)\n\}/);
 

@@ -5,7 +5,7 @@ const dsLib = fileURLToPath(new URL('../../../packages/design-system/src/lib', i
 
 const config: StorybookConfig = {
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|svelte)'],
-	addons: ['@storybook/addon-docs', '@storybook/addon-a11y', '@storybook/addon-svelte-csf'],
+	addons: ['@storybook/addon-docs', '@storybook/addon-a11y', '@storybook/addon-svelte-csf', '@storybook/addon-themes'],
 	framework: '@storybook/svelte-vite',
 	staticDirs: ['../static'],
 	async viteFinal(config) {
