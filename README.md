@@ -17,6 +17,14 @@ pnpm dev          # Storybook on http://localhost:6006
 
 Storybook reads the design system's source directly, so component and token edits hot-reload.
 
+Start a product against your local design system (no registry or token needed):
+
+```bash
+pnpm new ../my-product
+```
+
+Inside that app, `npm run ds:update` pulls in later design-system changes.
+
 - Add a shadcn component: `cd packages/design-system && npx shadcn-svelte@latest add <name>`, then restyle it to the
   tokens and export it from `src/lib/index.ts`.
 - Tokens: `packages/design-system/src/lib/styles/tokens.css` (primitives) and `theme.css` (roles, type, radius,
