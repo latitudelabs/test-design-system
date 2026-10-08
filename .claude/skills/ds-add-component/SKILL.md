@@ -13,20 +13,40 @@ Repo layout: `packages/design-system` (the package), `apps/docs` (Storybook), `p
 
 ## 0. Decide what to build
 
-- **Check it doesn't exist** (`packages/design-system/src/lib/index.ts`) and isn't better as a variant of an existing
-  component.
-- **Prefer shadcn-svelte** if it has the component (https://shadcn-svelte.com/docs/components): it brings Bits UI
-  accessibility for free. Write a custom component only for Latitude-specific patterns (like PromptInput, Steps,
-  ChatMessage).
-- Agree the **API** (props, variants) with the user before building if it isn't obvious.
+1. **Check it doesn't already exist** (`packages/design-system/src/lib/index.ts`) and isn't better as a variant of an
+   existing component.
+2. **Check shadcn-svelte for a base — always, before writing anything.** Don't rely on memory; the catalog changes:
+
+   ```bash
+   node .claude/skills/ds-add-component/scripts/shadcn-components.mjs <search>   # e.g. select, tab, menu
+   ```
+
+   It lists matching shadcn-svelte components from the live registry, marks the ones we already have, and shows
+   what each one pulls in. Search for synonyms too (a "dropdown" may be `select`, `dropdown-menu` or
+   `native-select`; a "toast" is `sonner`; a "modal" is `dialog`, `alert-dialog`, `sheet` or `drawer`).
+3. **Pick the base and tell the user what you found**, before building:
+   - **shadcn match** → start from it. It brings Bits UI keyboard handling, focus management and ARIA for free,
+     which is hard to get right by hand. Check close semantic variants (e.g. a destructive confirmation is
+     `alert-dialog`, not `dialog`).
+   - **No shadcn match, but a Bits UI primitive fits** (https://bits-ui.com/docs) → build on the primitive.
+   - **Neither** (a Latitude-specific pattern like PromptInput, Steps, ChatMessage) → custom component from tokens.
+4. Agree the **API** (props, variants) with the user if it isn't obvious.
 
 ## 1. Code
 
-**shadcn component:**
+**shadcn component.** The CLI also (re)installs the components it depends on, which **overwrites our restyled
+versions** (adding `dialog` replaced our Button). Start from a clean git state, then:
 
 ```bash
-cd packages/design-system && npx shadcn-svelte@latest add <name> --yes --no-deps-install && cd ../.. && pnpm install
+cd packages/design-system
+npx shadcn-svelte@latest add <name> --yes --overwrite --no-deps-install
+git checkout -- $(git diff --name-only -- src/lib/components/ui)   # restore every existing component it touched
+git status --short src/lib/components/ui                            # only the new component folder(s) should remain
+cd ../.. && pnpm install
 ```
+
+`--overwrite` keeps the CLI non-interactive; the `git checkout` puts our versions back. Never keep an overwritten
+existing component.
 
 Then move any new runtime deps the CLI added from `devDependencies` to `dependencies` in
 `packages/design-system/package.json` (published consumers need them).
