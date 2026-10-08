@@ -1,6 +1,8 @@
 # Patterns
 
-Proven compositions. Adapt sizes and content; keep the structure and tokens.
+Proven compositions. Adapt sizes and content; keep the structure and tokens. Each one has a live, interactive
+version in Storybook → Patterns (Settings page, Forms & validation, Empty/loading/error states, AI chat panel,
+Viewer experience).
 
 ## Page shell
 
@@ -46,18 +48,26 @@ Steps on the left, the active step's content in an inner panel on the right.
 </Card.Root>
 ```
 
-## Floating AI panel
+## AI chat panel
 
-The assistant talks in a raised panel; the brand gradient appears only in its avatar.
+The assistant talks in a raised panel; the brand gradient appears only in its avatar. Show a thinking state and
+disable the input while it works; the list is a polite live region so new messages are announced.
 
 ```svelte
 <div class="flex w-[446px] flex-col gap-5 rounded-xl bg-card p-2 shadow-raised">
-	{#each messages as m, i (i)}
-		<ChatMessage from={m.from}>{m.text}</ChatMessage>
-	{/each}
-	<PromptInput bind:value={draft} placeholder="Reply…" onsubmit={send} />
+	<div class="flex flex-col gap-5 px-2 pt-2" role="log" aria-live="polite" aria-label="Conversation with the assistant">
+		{#each messages as m, i (i)}
+			<ChatMessage from={m.from}>{m.text}</ChatMessage>
+		{/each}
+		{#if thinking}
+			<ChatMessage><span class="text-muted-foreground">Thinking<span class="animate-pulse">…</span></span></ChatMessage>
+		{/if}
+	</div>
+	<PromptInput bind:value={draft} placeholder="Reply to the assistant…" disabled={thinking} onsubmit={send} />
 </div>
 ```
+
+Keep assistant messages short and end with a next step or question.
 
 ## Connected cards
 
@@ -69,7 +79,8 @@ A short vertical `Separator` joins cards that form a flow (e.g. experience → i
 
 ## Form
 
-Labels above fields, 8px between label and field, 16px between fields, one primary button.
+Labels above fields, 8px between label and field, 16px between fields, one primary button named for what it does
+("Create project", not "Submit"). Mark optional fields with a muted "(optional)", not required ones.
 
 ```svelte
 <form class="flex w-[430px] flex-col gap-4" onsubmit={save}>
@@ -87,6 +98,32 @@ Labels above fields, 8px between label and field, 16px between fields, one prima
 	</div>
 </form>
 ```
+
+### Validation
+
+Validate on submit and clear each error as the user fixes it. Each error: `aria-invalid="true"`, a message that says
+how to fix it in `text-caption text-destructive` linked with `aria-describedby` (it replaces the helper text). With
+several errors, add a `role="alert"` summary at the top and move focus to the first invalid field.
+
+```svelte
+<div class="flex flex-col gap-2">
+	<Label for="audience">Number of viewers</Label>
+	<Input id="audience" type="number" bind:value={audience}
+		aria-invalid={error ? 'true' : undefined}
+		aria-describedby={error ? 'audience-error' : 'audience-hint'} />
+	{#if error}
+		<p id="audience-error" class="text-caption text-destructive">Recruit at least 10 viewers so insights are meaningful.</p>
+	{:else}
+		<p id="audience-hint" class="text-caption text-muted-foreground">At least 10. We’ll recruit them for you.</p>
+	{/if}
+</div>
+```
+
+## Settings page
+
+Breadcrumb ending in "Settings", a `text-heading` title, then one `Card` per group. Form fields save with an explicit
+"Save changes" (confirm with `role="status"`); switches apply immediately and get their own card. The **danger zone**
+card comes last, with destructive actions confirmed in a `Dialog`.
 
 ## Settings row
 
@@ -124,7 +161,20 @@ Explain what will appear and offer the next action. No illustrations needed; an 
 </div>
 ```
 
-For loading, use `<Icon icon={LoaderCircle} class="animate-spin" label="Loading" />`.
+Say what failed, reassure if data is safe, and offer a way out (a `secondary` **Try again** button). Never show
+raw error codes.
+
+## Loading state
+
+```svelte
+<div class="flex flex-col items-center gap-3 rounded-sm bg-background px-6 py-10 text-center" aria-busy="true">
+	<Icon icon={LoaderCircle} size="lg" class="animate-spin text-muted-foreground" label="Loading" />
+	<p class="text-title">Analysing 24 responses…</p>
+	<p class="text-caption text-muted-foreground">This usually takes under a minute.</p>
+</div>
+```
+
+Every view that loads or lists data needs all three states (empty, loading, error) designed up front.
 
 ## Destructive action
 

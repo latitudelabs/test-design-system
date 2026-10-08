@@ -1,6 +1,6 @@
 <script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import Share from '@lucide/svelte/icons/share';
+	import { Share } from '@latitudelabs/design-system/icons';
 	import { Breadcrumb, Button, Card, ChatMessage, PromptInput, Separator, Steps } from '@latitudelabs/design-system';
 
 	const { Story } = defineMeta({

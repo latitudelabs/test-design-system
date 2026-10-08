@@ -1,8 +1,7 @@
 <script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
+	import { ArrowUp, Share } from '@latitudelabs/design-system/icons';
 	import { fn } from 'storybook/test';
-	import ArrowUp from '@lucide/svelte/icons/arrow-up';
-	import Share from '@lucide/svelte/icons/share';
 	import { Button } from '@latitudelabs/design-system';
 
 	const { Story } = defineMeta({

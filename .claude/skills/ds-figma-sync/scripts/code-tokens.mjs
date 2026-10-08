@@ -14,7 +14,13 @@ const tokens = fs.readFileSync(path.join(styles, 'tokens.css'), 'utf8');
 const theme = fs.readFileSync(path.join(styles, 'theme.css'), 'utf8');
 
 const block = (css, re) =>
-	Object.fromEntries([...(css.match(re)?.[1] ?? '').matchAll(/--([\w-]+):\s*([^;]+);/g)].map((m) => [m[1], m[2].trim()]));
+	Object.fromEntries(
+		[...(css.match(re)?.[1] ?? '').matchAll(/--([\w-]+):\s*([^;]+);/g)].map((m) => [
+			m[1],
+			// Formatters may wrap long values (`var(\n --x\n)`); collapse whitespace inside var() before resolving.
+			m[2].replace(/\/\*[\s\S]*?\*\//g, '').replace(/\(\s+/g, '(').replace(/\s+\)/g, ')').trim(),
+		])
+	);
 
 const primitives = block(tokens, /:root\s*\{([\s\S]*?)\n\}/);
 const lightRoles = block(theme, /:root\s*\{([\s\S]*?)\n\}/);

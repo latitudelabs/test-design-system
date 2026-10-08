@@ -8,7 +8,7 @@ function parse(css: string, block: RegExp): Token[] {
 	const body = css.match(block)?.[1] ?? '';
 	return [...body.matchAll(/(--[\w-]+):\s*([^;]+);[ \t]*(?:\/\*\s*(.*?)\s*\*\/)?/g)].map(([, name, value, comment]) => ({
 		name,
-		value: value.trim().replace(/\s+/g, ' '),
+		value: value.trim().replace(/\(\s+/g, '(').replace(/\s+\)/g, ')').replace(/\s+/g, ' '),
 		comment,
 	}));
 }

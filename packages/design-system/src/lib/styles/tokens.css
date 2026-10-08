@@ -13,7 +13,7 @@
 	--neutral-200: #d9d9d9;
 	--neutral-300: #a3a3a3;
 	--neutral-400: #979797; /* light placeholder, icons, disabled only — fails AA for text */
-	--neutral-500: #8e8e8e; /* dark placeholder — 4.6:1 on dark input */
+	--neutral-500: #8e8e8e; /* control (switch off track): 3:1 on cards in both themes */
 	--neutral-600: #6a6a6a;
 	--neutral-800: #333333;
 	--neutral-850: #262626;
