@@ -1,0 +1,6 @@
+@import '@latitudelabs/design-system/theme.css';
+
+/* Also scan the docs' own stories for Tailwind classes. */
+@source '../src';
+/* Classes the Foundations pages build dynamically from tokens. */
+@source inline('text-{heading,title,body-lg,body,caption,body-sm}');

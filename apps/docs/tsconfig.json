@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"strict": true,
+		"skipLibCheck": true,
+		"verbatimModuleSyntax": true,
+		"allowImportingTsExtensions": true,
+		"noEmit": true,
+		"paths": {
+			"@latitudelabs/design-system": ["../../packages/design-system/src/lib/index.ts"],
+			"$lib": ["../../packages/design-system/src/lib"],
+			"$lib/*": ["../../packages/design-system/src/lib/*"]
+		}
+	},
+	"include": ["src", ".storybook"]
+}

@@ -1,0 +1,45 @@
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Radius & elevation" />
+
+# Radius & elevation
+
+Soft, generous corners. The radius grows with the size of the element, so nested shapes stay concentric.
+
+<Unstyled>
+	<div className="flex flex-wrap items-end gap-6 font-sans">
+		{[
+			['rounded-sm', '8px', 'Inner panels, small buttons, chips'],
+			['rounded-md', '12px', 'Buttons, buttons inside inputs'],
+			['rounded-lg', '16px', 'Inputs, textareas'],
+			['rounded-xl', '24px', 'Cards, floating panels'],
+			['rounded-full', '9999px', 'Badges, avatars, pills'],
+		].map(([cls, px, use]) => (
+			<div key={cls} className="flex w-40 flex-col gap-2">
+				<div className={`${cls} h-20 bg-card shadow-hairline`} />
+				<code className="text-body font-medium">{cls}</code>
+				<span className="text-caption text-muted-foreground">{px} · {use}</span>
+			</div>
+		))}
+	</div>
+</Unstyled>
+
+## Elevation
+
+Cards are separated from the page by a **hairline shadow**, not a border. There are only two levels.
+
+<Unstyled>
+	<div className="flex flex-wrap gap-8 bg-background p-8 font-sans">
+		<div className="flex h-28 w-64 flex-col justify-end gap-1 rounded-xl bg-card p-4 shadow-hairline">
+			<code className="text-body font-medium">shadow-hairline</code>
+			<span className="text-caption text-muted-foreground">Cards and sections resting on the page</span>
+		</div>
+		<div className="flex h-28 w-64 flex-col justify-end gap-1 rounded-xl bg-card p-4 shadow-raised">
+			<code className="text-body font-medium">shadow-raised</code>
+			<span className="text-caption text-muted-foreground">Floating panels: chat, popovers, menus</span>
+		</div>
+	</div>
+</Unstyled>
+
+**Don’t** add borders around cards, or stack several shadows. If a surface needs more emphasis, it's probably a
+`shadow-raised` floating panel.

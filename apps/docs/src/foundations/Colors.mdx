@@ -1,0 +1,94 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { primitives, roles, resolve, byPrefix } from '../lib/tokens';
+
+<Meta title="Foundations/Colors" />
+
+export const usage = {
+	background: 'Page background',
+	foreground: 'Primary text',
+	card: 'Cards and panels',
+	'card-foreground': 'Text on cards',
+	popover: 'Menus, popovers',
+	'popover-foreground': 'Text in popovers',
+	primary: 'The accent: primary buttons, active step, focus ring',
+	'primary-foreground': 'Text on primary',
+	secondary: 'Secondary buttons, chips',
+	'secondary-foreground': 'Text on secondary',
+	muted: 'Subtle fills',
+	'muted-foreground': 'Secondary text: captions, meta, nav links',
+	accent: 'Hover fills',
+	'accent-foreground': 'Text on hover fills',
+	destructive: 'Errors and destructive actions',
+	border: 'Dividers, connectors',
+	input: 'Input fill',
+	ring: 'Focus ring',
+	placeholder: 'Placeholders, icons, disabled. Never for readable text',
+};
+
+export const Swatch = ({ color }) => (
+	<span
+		style={{ display: 'inline-block', width: 40, height: 40, borderRadius: 8, background: color, boxShadow: 'inset 0 0 0 1px rgb(0 0 0 / 10%)' }}
+	/>
+);
+
+export const Table = ({ rows, columns }) => (
+	<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+		<thead>
+			<tr>{columns.map((c) => <th key={c} style={{ textAlign: 'left', padding: '8px 12px', borderBottom: '1px solid #e8e8e8' }}>{c}</th>)}</tr>
+		</thead>
+		<tbody>
+			{rows.map((r, i) => (
+				<tr key={i}>{r.map((cell, j) => <td key={j} style={{ padding: '8px 12px', borderBottom: '1px solid #f2f2f2', verticalAlign: 'middle' }}>{cell}</td>)}</tr>
+			))}
+		</tbody>
+	</table>
+);
+
+export const mono = (s) => <code style={{ fontSize: 13 }}>{s}</code>;
+
+# Colors
+
+The interface is **monochrome**. Neutrals carry the whole UI and black (`primary`) is the accent. Color is
+never decoration: if something is colored, it means something (error, AI, brand).
+
+Two layers:
+
+1. **Roles** (below) are what you use. They say what a color is *for*, so the whole system can be re-themed
+   (dark mode, sub-brands) without touching components.
+2. **Primitives** are the raw palette the roles point at. Don't use them directly in product code.
+
+## Roles
+
+Use as Tailwind utilities: `bg-{role}`, `text-{role}`, `border-{role}`, e.g. `bg-card text-muted-foreground`.
+
+<Table
+	columns={['', 'Role', 'Value', 'Use for']}
+	rows={roles
+		.filter((t) => !t.name.startsWith('--sidebar') && t.name !== '--radius')
+		.map((t) => [<Swatch color={resolve(t.value)} />, mono(t.name.slice(2)), mono(`${t.value.replace(/var\(--(.+)\)/, '$1')} · ${resolve(t.value)}`), usage[t.name.slice(2)] ?? ''])}
+/>
+
+## Primitives
+
+<Table
+	columns={['', 'Token', 'Value', 'Note']}
+	rows={primitives.map((t) => [<Swatch color={t.value} />, mono(t.name), mono(t.value), t.comment ?? ''])}
+/>
+
+## Accessibility
+
+All text roles meet **WCAG AA (4.5:1)** on the backgrounds they're used on:
+
+<Table
+	columns={['Text', 'On', 'Contrast']}
+	rows={[
+		['foreground', 'background / card', '15.6:1 / 17.4:1'],
+		['muted-foreground', 'background / card', '4.8:1 / 5.4:1'],
+		['primary-foreground', 'primary', '15.1:1'],
+		['destructive', 'background / card', '5.9:1 / 6.6:1'],
+		['placeholder', 'input', '2.4:1 (placeholders and disabled only, exempt)'],
+	].map((r) => r.map((c, i) => (i < 2 ? mono(c) : c)))}
+/>
+
+**Don't** use `placeholder` (`#979797`) for anything a user needs to read, like labels, nav links or helper
+text. Use `muted-foreground`.

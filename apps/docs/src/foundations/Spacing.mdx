@@ -1,0 +1,28 @@
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Spacing" />
+
+# Spacing
+
+A **4px grid**, using Tailwind's default spacing scale (`p-4` = 16px, `gap-2` = 8px). Stick to the steps below.
+Off-grid values like 7px or 15px are how layouts start to drift.
+
+<Unstyled>
+	<div className="flex flex-col gap-3 font-sans">
+		{[
+			['1', '4px', 'Title to caption'],
+			['2', '8px', 'Inside compact groups, icon gaps, panel inset'],
+			['3', '12px', 'Small card padding'],
+			['4', '16px', 'Card padding, list item padding'],
+			['5', '20px', 'Input text inset'],
+			['8', '32px', 'Between sections'],
+		].map(([step, px, use]) => (
+			<div key={step} className="grid grid-cols-[80px_60px_1fr_2fr] items-center gap-4">
+				<code className="text-body font-medium">{step}</code>
+				<span className="text-caption text-muted-foreground">{px}</span>
+				<div className="h-4 rounded-sm bg-primary" style={{ width: px }} />
+				<span className="text-caption text-muted-foreground">{use}</span>
+			</div>
+		))}
+	</div>
+</Unstyled>

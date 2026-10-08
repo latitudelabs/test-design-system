@@ -1,0 +1,27 @@
+/*
+ * Latitude design tokens — primitives.
+ *
+ * Raw brand colors (radius, shadow and type scales live in theme.css @theme). Components never use these directly: they go through the semantic
+ * roles in theme.css (--primary, --muted-foreground, …). Mirrored in Figma as the
+ * "Primitives" variable collection.
+ */
+:root {
+	/* Neutral scale — the UI is monochrome. */
+	--neutral-0: #ffffff;
+	--neutral-50: #f2f2f2;
+	--neutral-100: #e8e8e8;
+	--neutral-200: #d9d9d9;
+	--neutral-400: #979797; /* placeholder, icons, disabled only — fails AA for text */
+	--neutral-600: #6a6a6a;
+	--neutral-900: #1a1a1a;
+	--neutral-950: #262626;
+
+	/* Status */
+	--red-700: #b42318;
+
+	/* Brand accent — reserved for AI and brand moments (avatar, highlights). */
+	--brand-1: #a81022;
+	--brand-2: #d62450;
+	--brand-3: #f8672b;
+	--brand-4: #76177f;
+}

@@ -1,0 +1,62 @@
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
+import { textStyles } from '../lib/tokens';
+
+<Meta title="Foundations/Typography" />
+
+export const usage = {
+	heading: 'Page and question headings. One per view.',
+	title: 'Card titles, section headers, navigation.',
+	'body-lg': 'Input text, chat messages, primary reading text.',
+	body: 'Default UI text: list items, buttons, labels.',
+	caption: 'Secondary lines under a title. Pair with text-muted-foreground.',
+	'body-sm': 'Long descriptions and paragraphs in dense panels.',
+};
+
+# Typography
+
+**Inter** only, in two weights: **Regular (400)** and **Medium (500)**. Hierarchy comes from size and color, not
+from bold. Text at 16px and up is tracked **−2%**.
+
+Each style is a Tailwind utility that sets size, line height, letter spacing and weight together:
+`class="text-title"`. Combine with a color role, e.g. `text-caption text-muted-foreground`.
+
+<Unstyled>
+	<div className="flex flex-col gap-6 font-sans">
+		{textStyles.map((s) => (
+			<div key={s.name} className="grid grid-cols-[180px_1fr] items-baseline gap-6 border-b border-border pb-6">
+				<div className="flex flex-col gap-1">
+					<code className="text-body font-medium">text-{s.name}</code>
+					<span className="text-caption text-muted-foreground">
+						{s.size} · {s.lineHeight} · {s.fontWeight} · {s.letterSpacing}
+					</span>
+				</div>
+				<div className="flex flex-col gap-1">
+					<span className={`text-${s.name}`}>What characters do people like the most?</span>
+					<span className="text-caption text-muted-foreground">{usage[s.name]}</span>
+				</div>
+			</div>
+		))}
+	</div>
+</Unstyled>
+
+## Pairings from the product
+
+<Unstyled>
+	<div className="flex flex-col gap-8 font-sans">
+		<div className="flex flex-col gap-1">
+			<span className="text-title">What characters do people like the most?</span>
+			<span className="text-caption text-muted-foreground">Viewer experience</span>
+		</div>
+		<div className="flex flex-col">
+			<span className="text-body font-medium">What’s your name?</span>
+			<span className="text-caption text-muted-foreground">Open Question</span>
+		</div>
+		<span className="text-heading">What’s your name?</span>
+	</div>
+</Unstyled>
+
+## Don’t
+
+- Don’t use **bold (600+)**. Use Medium, size and color for emphasis.
+- Don’t set sizes ad hoc (`text-[15px]`). If a size is missing, propose a new style.
+- Don’t use `placeholder` grey for readable text. Secondary text is `text-muted-foreground`.
