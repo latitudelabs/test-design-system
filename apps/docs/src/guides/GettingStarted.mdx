@@ -13,6 +13,13 @@ accessible and consistent instead of rebuilding buttons from scratch.
 
 The code in `@latitudelabs/design-system` is the source of truth. The Figma library mirrors it.
 
+## How it fits together
+
+<img src="./design-system-map.svg" alt="Map of the design system: the code repo (tokens, components, icons, agent skills, Storybook, starter CLI) is the source of truth; it is mirrored to the Figma library, released through CI to GitHub Packages, and used by product teams." style={{ width: '100%', height: 'auto', border: '1px solid #e8e8e8', borderRadius: 16 }} />
+
+**Thick** arrows: the source of truth flowing into its mirror (code to Figma). **Dotted**: a proposal, or set up
+but not live yet. **Thin**: everyday use. Source and exports live in the repo's `docs/` folder.
+
 ## Start a new product
 
 The CLI scaffolds a SvelteKit app with the design system, fonts and registry access already configured:
