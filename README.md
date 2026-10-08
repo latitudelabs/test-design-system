@@ -30,6 +30,15 @@ Inside that app, `npm run ds:update` pulls in later design-system changes.
 - Tokens: `packages/design-system/src/lib/styles/tokens.css` (primitives) and `theme.css` (roles, type, radius,
   shadows). Foundations docs are generated from these files.
 
+## Icons and agent skills
+
+- **Icons:** `packages/design-system/src/lib/icons/` (curated Lucide set + `<Icon>`), exported as
+  `@latitudelabs/design-system/icons`; gallery in Storybook → Foundations → Icons; Figma page **Icons**.
+- **Product skills** (`packages/design-system/skills/`): `latitude-ui` and `latitude-ui-review`, shipped in the
+  package and copied into apps' `.claude/skills/` by the `latitude-skills` postinstall.
+- **Maintainer skills** (`.claude/skills/` in this repo): `ds-add-component` (new component or icon, code → Storybook →
+  Figma → Code Connect) and `ds-figma-sync` (compare and sync tokens with Figma).
+
 ## Release
 
 ```bash

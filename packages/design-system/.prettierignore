@@ -11,3 +11,6 @@ bun.lockb
 # Build output
 dist
 .svelte-kit
+
+# Agent skill docs: keep code examples exactly as written
+skills/**/*.md

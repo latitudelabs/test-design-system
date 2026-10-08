@@ -73,6 +73,30 @@ export default defineConfig({ plugins: [tailwindcss(), sveltekit()] });
 </Card.Root>
 ```
 
+## Icons
+
+A curated set of 62 Lucide icons ships with the design system. Browse them in **Foundations → Icons**.
+
+```svelte
+<script lang="ts">
+	import { Icon, Search } from '@latitudelabs/design-system/icons';
+</script>
+
+<Icon icon={Search} />
+```
+
+## AI agent skills
+
+The package includes agent skills that teach AI coding agents (Claude Code and others that read `.claude/skills`)
+to build with the design system:
+
+- **latitude-ui**: which components exist, which tokens to use, proven page patterns.
+- **latitude-ui-review**: an audit (`node .claude/skills/latitude-ui-review/scripts/audit.mjs src`) that flags
+  hardcoded colors, bold text, off-scale values, direct Lucide imports and more, with the fix for each.
+
+Apps created with `npm create @latitudelabs` sync them into `.claude/skills/` on every install. In an existing app,
+add `"postinstall": "latitude-skills"` to your `package.json` scripts.
+
 ## Dark theme
 
 Every color role has a dark value. Toggle it with a `dark` class on `<html>`. The simplest way to follow the

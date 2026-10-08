@@ -11,12 +11,12 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"postinstall": "latitude-skills"
 	},
 	"dependencies": {
 		"@latitudelabs/design-system": "__DS_VERSION__",
-		"mode-watcher": "^1.1.0",
-		"@lucide/svelte": "^1.53.0"
+		"mode-watcher": "^1.1.0"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",

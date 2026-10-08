@@ -14,6 +14,7 @@ const config: StorybookConfig = {
 		// Point at the design system's source (not dist/) so edits hot-reload without a package build.
 		config.resolve.alias = [
 			{ find: /^@latitudelabs\/design-system$/, replacement: `${dsLib}/index.ts` },
+			{ find: /^@latitudelabs\/design-system\/icons$/, replacement: `${dsLib}/icons/index.ts` },
 			{ find: /^@latitudelabs\/design-system\/(.+)\.css(\?.*)?$/, replacement: `${dsLib}/styles/$1.css$2` },
 			{ find: /^\$lib(\/.*)?$/, replacement: `${dsLib}$1` },
 			...(Array.isArray(existing)

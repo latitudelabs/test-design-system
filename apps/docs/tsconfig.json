@@ -10,6 +10,7 @@
 		"noEmit": true,
 		"paths": {
 			"@latitudelabs/design-system": ["../../packages/design-system/src/lib/index.ts"],
+			"@latitudelabs/design-system/icons": ["../../packages/design-system/src/lib/icons/index.ts"],
 			"$lib": ["../../packages/design-system/src/lib"],
 			"$lib/*": ["../../packages/design-system/src/lib/*"]
 		}

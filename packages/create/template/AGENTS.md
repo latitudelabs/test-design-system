@@ -1,5 +1,9 @@
 # Notes for AI coding agents
 
+Detailed guidance lives in the agent skills in `.claude/skills/` (refreshed on every install from the design
+system package): **latitude-ui** for building UI and **latitude-ui-review** for auditing it
+(`node .claude/skills/latitude-ui-review/scripts/audit.mjs src`).
+
 This app uses the Latitude design system (`@latitudelabs/design-system`, Svelte 5 + Tailwind v4).
 
 - Build UI from design-system components first: Button, Badge, Input, Textarea, Label, Separator, PromptInput,

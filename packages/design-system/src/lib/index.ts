@@ -17,6 +17,7 @@ export { Label } from './components/ui/label/index.js';
 export { Separator } from './components/ui/separator/index.js';
 
 // Latitude components (not in shadcn).
+export { default as Icon, iconSizes, type IconSize } from './components/icon/icon.svelte';
 export { PromptInput } from './components/prompt-input/index.js';
 export { Steps, type Step } from './components/steps/index.js';
 export { ChatMessage } from './components/chat-message/index.js';

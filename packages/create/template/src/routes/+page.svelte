@@ -1,8 +1,7 @@
 <script lang="ts">
-	import Moon from '@lucide/svelte/icons/moon';
-	import Sun from '@lucide/svelte/icons/sun';
 	import { toggleMode } from 'mode-watcher';
 	import { Breadcrumb, Button, Card, ChatMessage, PromptInput } from '@latitudelabs/design-system';
+	import { Moon, Sun } from '@latitudelabs/design-system/icons';
 
 	let messages = $state<{ from: 'assistant' | 'user'; text: string }[]>([
 		{ from: 'assistant', text: 'Your product is set up with the Latitude design system. What are we building?' }
