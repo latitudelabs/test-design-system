@@ -4,24 +4,35 @@ Proven compositions. Adapt sizes and content; keep the structure and tokens. Eac
 version in Storybook → Patterns (Settings page, Forms & validation, Empty/loading/error states, AI chat panel,
 Viewer experience).
 
-## Page shell
+## Page layouts
 
-Header with breadcrumb on the left and quiet navigation on the right; content centered below.
+Every page shares one frame: `bg-background` with 32px padding, a header with the breadcrumb on the left and quiet
+ghost navigation on the right, content 48px below with a `text-heading` title. Pick one of three content widths:
+
+| Width | Class | Use for |
+|---|---|---|
+| Narrow | `max-w-[640px]` | Forms, settings, reading. One card per group, stacked. |
+| Default | `max-w-[970px]` | Workspaces: one primary card (side list + main panel), connected cards below. |
+| Wide | `max-w-[1280px]` | Dashboards: a row of stat cards, then a 2:1 grid (`grid-cols-3`, main `col-span-2`). |
 
 ```svelte
 <div class="min-h-screen px-8 py-8">
 	<header class="flex items-center justify-between">
 		<Breadcrumb.Root>…</Breadcrumb.Root>
-		<nav class="flex gap-1">
+		<nav class="flex items-center gap-1" aria-label="App">
 			<Button variant="ghost" href="/assets" class="text-title text-muted-foreground">Assets</Button>
 			<Button variant="ghost" href="/settings" class="text-title text-muted-foreground">Settings</Button>
 		</nav>
 	</header>
-	<main class="mx-auto mt-16 flex max-w-[970px] flex-col items-center gap-4">…</main>
+	<main class="mx-auto mt-12 flex w-full max-w-[970px] flex-col gap-4">
+		<h1 class="text-heading">Page title</h1>
+		…cards…
+	</main>
 </div>
 ```
 
-The page is `bg-background` (set globally). Content lives on cards.
+Content lives on cards (`shadow-hairline`), never directly on the page. 16px between cards, 32px between sections.
+Don't invent new widths. The floating AI panel sits bottom-center with `shadow-raised`, one per page.
 
 ## Primary card with side list
 
