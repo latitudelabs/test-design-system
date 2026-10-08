@@ -1,0 +1,74 @@
+import { Meta, Markdown } from '@storybook/addon-docs/blocks';
+import { skills } from '../lib/skills';
+
+<Meta title="AI agent skills" />
+
+export const AUDIENCE = {
+	product: { label: 'Product teams', where: 'Synced into every app’s .claude/skills/ on install' },
+	maintainer: { label: 'Design system maintainers', where: 'This repo’s .claude/skills/' },
+};
+
+export const first = (text) => text.split(/(?<=\.)\s/)[0];
+
+export const SkillCard = ({ skill }) => (
+	<div style={{ border: '1px solid #e8e8e8', borderRadius: 16, padding: 20, marginBottom: 16 }}>
+		<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
+			<code style={{ fontSize: 16, fontWeight: 500 }}>{skill.name}</code>
+			<span style={{ fontSize: 13, color: '#6a6a6a' }}>{AUDIENCE[skill.audience].label}</span>
+		</div>
+		<p style={{ margin: '8px 0 12px', fontSize: 14 }}>{first(skill.description)}</p>
+		<p style={{ margin: 0, fontSize: 13, color: '#6a6a6a' }}>
+			<code>{skill.path}/SKILL.md</code>
+			{skill.files.length > 0 && <> · also bundles {skill.files.map((f) => <code key={f} style={{ marginLeft: 4 }}>{f}</code>)}</>}
+		</p>
+		<details style={{ marginTop: 12 }}>
+			<summary style={{ cursor: 'pointer', fontSize: 14, fontWeight: 500 }}>When it triggers & full instructions</summary>
+			<div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid #f2f2f2' }}>
+				<p style={{ fontSize: 13, color: '#6a6a6a' }}><strong>Trigger description:</strong> {skill.description}</p>
+				<Markdown>{skill.body}</Markdown>
+			</div>
+		</details>
+	</div>
+);
+
+# AI agent skills
+
+Most new UI will be written with an AI coding agent. Agent skills are instructions an agent loads on demand (Claude
+Code reads them from `.claude/skills/`), and these teach it to work **with** the design system instead of
+around it: which components exist, which tokens to use, how to check its work, and how to extend the system.
+
+This page is generated from the skill files in the repo, so it always matches what agents actually read.
+
+## For product teams
+
+<>{skills.filter((s) => s.audience === 'product').map((s) => <SkillCard key={s.name} skill={s} />)}</>
+
+**How to get them.** Apps created with `npm create @latitudelabs` (or `pnpm new` locally) already have them: the app's
+`postinstall` runs `latitude-skills`, which copies these skills from the installed design-system package into
+`.claude/skills/`. Every `npm install` or design-system update refreshes them, so agents always know about the
+latest components. In an existing app, add this to `package.json`:
+
+```json
+"scripts": { "postinstall": "latitude-skills" }
+```
+
+**Run the audit yourself** (no agent needed), e.g. before opening a PR:
+
+```bash
+node .claude/skills/latitude-ui-review/scripts/audit.mjs src
+```
+
+## For design system maintainers
+
+<>{skills.filter((s) => s.audience === 'maintainer').map((s) => <SkillCard key={s.name} skill={s} />)}</>
+
+These live in this repository's `.claude/skills/` and load automatically for anyone working on the design system
+with Claude Code.
+
+## Writing or changing a skill
+
+- Product skills: `packages/design-system/skills/<name>/` (shipped with the package; name must start with
+  `latitude-` to be synced). Maintainer skills: `.claude/skills/<name>/`.
+- The frontmatter `description` decides when an agent uses the skill, so say what it does **and** when to use it.
+- When you add a component, update `latitude-ui`'s catalog and `references/components.md`. That's how agents learn
+  it exists (the `ds-add-component` skill includes this step).
