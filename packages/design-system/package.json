@@ -4,7 +4,7 @@
 	"description": "Latitude design system: tokens, styles and Svelte components.",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/latitudelabs/design-system.git",
+		"url": "git+https://github.com/latitudelabs/test-design-system.git",
 		"directory": "packages/design-system"
 	},
 	"publishConfig": {

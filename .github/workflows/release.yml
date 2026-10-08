@@ -13,6 +13,9 @@ permissions:
 
 jobs:
   release:
+    # Off until the repo variable RELEASE_ENABLED is set to "true" (Settings → Secrets and variables → Actions →
+    # Variables). Without this guard the first push would publish v0.0.1 of both packages.
+    if: vars.RELEASE_ENABLED == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,6 +30,7 @@ jobs:
       - run: pnpm --filter @latitudelabs/design-system lint
       - run: pnpm --filter @latitudelabs/design-system check
       - run: pnpm --filter @latitudelabs/design-system build
+      - run: pnpm --filter @latitudelabs/create test
 
       # Opens a "Version packages" PR when there are changesets; publishes when that PR is merged.
       - uses: changesets/action@v1

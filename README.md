@@ -6,7 +6,7 @@ Tokens, styles and Svelte components shared by Latitude's internal products, doc
 |---|---|
 | `packages/design-system` | `@latitudelabs/design-system`: tokens, Tailwind v4 theme, shadcn-svelte based components |
 | `apps/docs` | Storybook: getting started, foundations, components, patterns |
-| `packages/create` | *(planned)* `@latitudelabs/create`, the `npm create @latitudelabs` starter CLI |
+| `packages/create` | `@latitudelabs/create`: `npm create @latitudelabs@latest my-product` scaffolds a SvelteKit app with the design system |
 
 ## Develop
 
@@ -28,4 +28,8 @@ Storybook reads the design system's source directly, so component and token edit
 pnpm changeset    # describe your change
 ```
 
-Merging to `main` opens a "Version packages" PR; merging that publishes to GitHub Packages (`npm.pkg.github.com`).
+Merging to `main` opens a "Version packages" PR; merging that publishes both packages (they share a version) to
+GitHub Packages (`npm.pkg.github.com`).
+
+Releases are **off** until the repository variable `RELEASE_ENABLED` is set to `true`
+(Settings → Secrets and variables → Actions → Variables).

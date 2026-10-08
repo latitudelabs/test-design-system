@@ -2,6 +2,8 @@ name: CI
 
 on:
   pull_request:
+  push:
+    branches: [main]
 
 jobs:
   check:
@@ -17,4 +19,5 @@ jobs:
       - run: pnpm --filter @latitudelabs/design-system lint
       - run: pnpm --filter @latitudelabs/design-system check
       - run: pnpm --filter @latitudelabs/design-system build
+      - run: pnpm --filter @latitudelabs/create test
       - run: pnpm --filter docs build

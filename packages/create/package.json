@@ -1,0 +1,27 @@
+{
+	"name": "@latitudelabs/create",
+	"version": "0.0.1",
+	"description": "Scaffold a new Latitude product: npm create @latitudelabs@latest",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/latitudelabs/test-design-system.git",
+		"directory": "packages/create"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
+	"type": "module",
+	"bin": {
+		"create-latitudelabs": "bin/index.js"
+	},
+	"files": [
+		"bin",
+		"template"
+	],
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"test": "node test/smoke.js"
+	}
+}
