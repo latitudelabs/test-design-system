@@ -15,6 +15,7 @@ export { Input } from './components/ui/input/index.js';
 export { Textarea } from './components/ui/textarea/index.js';
 export { Label } from './components/ui/label/index.js';
 export { Separator } from './components/ui/separator/index.js';
+export { Switch } from './components/ui/switch/index.js';
 
 // Latitude components (not in shadcn).
 export { default as Icon, iconSizes, type IconSize } from './components/icon/icon.svelte';
@@ -25,5 +26,6 @@ export { ChatMessage } from './components/chat-message/index.js';
 export * as Avatar from './components/ui/avatar/index.js';
 export * as Breadcrumb from './components/ui/breadcrumb/index.js';
 export * as Card from './components/ui/card/index.js';
+export * as Dialog from './components/ui/dialog/index.js';
 
 export { cn } from './utils.js';

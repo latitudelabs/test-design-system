@@ -40,6 +40,7 @@
 	--input: var(--neutral-100);
 	--ring: var(--neutral-850);
 	--placeholder: var(--neutral-400);
+	--control: var(--neutral-500); /* unselected control track/outline (switch off): 3:1 on cards */
 	--radius: 16px;
 
 	--sidebar: var(--neutral-50);
@@ -68,7 +69,9 @@
 	--foreground: var(--neutral-50);
 	--card: var(--neutral-900);
 	--card-foreground: var(--neutral-50);
-	--popover: var(--neutral-850);
+	--popover: var(
+		--neutral-900
+	); /* same as card: buttons and inputs (neutral-850) stay visible inside dialogs */
 	--popover-foreground: var(--neutral-50);
 	--primary: var(--neutral-50);
 	--primary-foreground: var(--neutral-900);
@@ -141,6 +144,7 @@
 	--color-input: var(--input);
 	--color-ring: var(--ring);
 	--color-placeholder: var(--placeholder);
+	--color-control: var(--control);
 	--color-sidebar: var(--sidebar);
 	--color-sidebar-foreground: var(--sidebar-foreground);
 	--color-sidebar-primary: var(--sidebar-primary);

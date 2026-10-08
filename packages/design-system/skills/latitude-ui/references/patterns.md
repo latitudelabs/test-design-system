@@ -88,9 +88,19 @@ Labels above fields, 8px between label and field, 16px between fields, one prima
 </form>
 ```
 
-There's no Switch or Checkbox component yet. For an on/off choice, use two `secondary`/`default` buttons as a
-segmented choice with `aria-pressed`, or a native `<input type="checkbox">` styled with `accent-primary size-4`,
-and mention to the user that a Switch is a design-system candidate.
+## Settings row
+
+Settings that apply immediately use a `Switch`, with the label and an explanation on the left.
+
+```svelte
+<div class="flex items-center justify-between gap-4">
+	<div class="flex flex-col gap-1">
+		<Label for="notify">Email notifications</Label>
+		<span class="text-caption text-muted-foreground">Get an email when 10 people have responded.</span>
+	</div>
+	<Switch id="notify" bind:checked={notify} />
+</div>
+```
 
 ## Empty state
 
@@ -118,8 +128,5 @@ For loading, use `<Icon icon={LoaderCircle} class="animate-spin" label="Loading"
 
 ## Destructive action
 
-Confirm before deleting; name the thing being deleted.
-
-```svelte
-<Button variant="destructive" onclick={() => (confirming = true)}><Trash data-icon="inline-start" />Delete project</Button>
-```
+Confirm in a `Dialog` before deleting, name the thing being deleted, and say what's lost. The full example is under
+Dialog in `components.md`. A "Danger zone" card at the bottom of settings pages holds these actions.

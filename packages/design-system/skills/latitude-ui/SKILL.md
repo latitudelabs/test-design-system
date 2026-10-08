@@ -12,7 +12,8 @@ hand-roll a button or hardcode a color, that product silently drifts away from t
 ## Workflow
 
 1. **Look for an existing component first.** Check the catalog below (full API in `references/components.md`).
-   Most screens are combinations of Card, Button, Input/PromptInput, Steps, ChatMessage, Breadcrumb and Icon.
+   Most screens are combinations of Card, Button, Input/PromptInput, Switch, Dialog, Steps, ChatMessage,
+   Breadcrumb and Icon.
 2. **Compose with layout utilities** (`flex`, `grid`, `gap-*`, `p-*`, `w-*`) and **style only with tokens**
    (tables below). Layout is yours; color, type, radius and elevation come from the system.
 3. **Check the patterns** in `references/patterns.md` for page shells, forms, empty/error states and AI chat.
@@ -33,47 +34,50 @@ other CSS frameworks or global styles.
 
 ## Component catalog
 
-| Need                                   | Use                                                                                                  |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Action                                 | `Button` — variants `default` (one per view), `secondary`, `outline`, `ghost`, `destructive`, `link` |
-| Text field + label                     | `Label` + `Input` (or `Textarea`)                                                                    |
-| One-answer / AI prompt field with send | `PromptInput`                                                                                        |
-| Grouped content on the page            | `Card.Root` › `Card.Header` (`Title`, `Description`, `Action`) › `Card.Content` › `Card.Footer`      |
-| Ordered steps / question list          | `Steps`                                                                                              |
-| Conversation message, AI avatar        | `ChatMessage` (`from="assistant"` shows the AI avatar)                                               |
-| Person or AI avatar                    | `Avatar.Root` › `Avatar.Image` + `Avatar.Fallback`                                                   |
-| Where am I (top-left)                  | `Breadcrumb.*`                                                                                       |
-| Short status / count                   | `Badge`                                                                                              |
-| Divider, connector                     | `Separator`                                                                                          |
-| Icon                                   | `Icon` with an icon from `@latitudelabs/design-system/icons` (62 curated Lucide icons)               |
+| Need | Use |
+| --- | --- |
+| Action | `Button` — variants `default` (one per view), `secondary`, `outline`, `ghost`, `destructive`, `link` |
+| Text field + label | `Label` + `Input` (or `Textarea`) |
+| One-answer / AI prompt field with send | `PromptInput` |
+| On/off setting that applies immediately | `Switch` + `Label` |
+| Confirm a destructive action, small focused form | `Dialog.Root` › `Dialog.Trigger` + `Dialog.Content` (`Header`, `Title`, `Description`, `Footer`, `Close`) |
+| Grouped content on the page | `Card.Root` › `Card.Header` (`Title`, `Description`, `Action`) › `Card.Content` › `Card.Footer` |
+| Ordered steps / question list | `Steps` |
+| Conversation message, AI avatar | `ChatMessage` (`from="assistant"` shows the AI avatar) |
+| Person or AI avatar | `Avatar.Root` › `Avatar.Image` + `Avatar.Fallback` |
+| Where am I (top-left) | `Breadcrumb.*` |
+| Short status / count | `Badge` |
+| Divider, connector | `Separator` |
+| Icon | `Icon` with an icon from `@latitudelabs/design-system/icons` (62 curated Lucide icons) |
 
 ## Tokens
 
 **Color (roles).** Use roles, never raw colors: they switch automatically in dark mode.
 
-| Utility                                   | For                                                  |
-| ----------------------------------------- | ---------------------------------------------------- |
-| `bg-background`                           | page                                                 |
-| `bg-card` / `bg-popover`                  | cards, panels / menus                                |
-| `text-foreground`                         | primary text                                         |
-| `text-muted-foreground`                   | secondary text: captions, meta, nav links            |
-| `bg-primary text-primary-foreground`      | the accent (black in light, white in dark)           |
-| `bg-secondary` / `bg-muted` / `bg-accent` | chips / subtle fills / hover                         |
-| `text-destructive`, `bg-destructive/10`   | errors, destructive                                  |
-| `border-border`, `bg-input`, `ring-ring`  | dividers, input fill, focus                          |
-| `text-placeholder`                        | placeholders and disabled only — never readable text |
-| `bg-brand`                                | the brand gradient: AI avatar and brand moments only |
+| Utility | For |
+| --- | --- |
+| `bg-background` | page |
+| `bg-card` / `bg-popover` | cards, panels / menus |
+| `text-foreground` | primary text |
+| `text-muted-foreground` | secondary text: captions, meta, nav links |
+| `bg-primary text-primary-foreground` | the accent (black in light, white in dark) |
+| `bg-secondary` / `bg-muted` / `bg-accent` | chips / subtle fills / hover |
+| `text-destructive`, `bg-destructive/10` | errors, destructive |
+| `border-border`, `bg-input`, `ring-ring` | dividers, input fill, focus |
+| `bg-control` | unselected control track (switch off) |
+| `text-placeholder` | placeholders and disabled only — never readable text |
+| `bg-brand` | the brand gradient: AI avatar and brand moments only |
 
 **Type.** Inter, weights 400 and 500 only (`font-medium` for emphasis — never `font-bold`/`font-semibold`).
 
-| Utility        | For                                                               |
-| -------------- | ----------------------------------------------------------------- |
-| `text-heading` | page / question heading (24px, one per view)                      |
-| `text-title`   | card titles, section headers, nav (16px medium)                   |
-| `text-body-lg` | input text, chat, primary reading (16px)                          |
-| `text-body`    | default UI text (14px); add `font-medium` for list titles, labels |
-| `text-caption` | secondary line under a title, with `text-muted-foreground`        |
-| `text-body-sm` | long descriptions in dense panels                                 |
+| Utility | For |
+| --- | --- |
+| `text-heading` | page / question heading (24px, one per view) |
+| `text-title` | card titles, section headers, nav (16px medium) |
+| `text-body-lg` | input text, chat, primary reading (16px) |
+| `text-body` | default UI text (14px); add `font-medium` for list titles, labels |
+| `text-caption` | secondary line under a title, with `text-muted-foreground` |
+| `text-body-sm` | long descriptions in dense panels |
 
 **Radius:** `rounded-sm` 8 (inner panels, chips) · `rounded-md` 12 (buttons) · `rounded-lg` 16 (inputs) ·
 `rounded-xl` 24 (cards, floating panels) · `rounded-full` (badges, avatars, pills).
@@ -95,7 +99,8 @@ overrides. If something looks wrong in dark, you probably used a raw color inste
 - Icon-only buttons need `aria-label`. Decorative icons next to text need nothing; meaningful standalone icons get
   `<Icon label="…">`.
 - Errors: `aria-invalid="true"` on the field plus a message in `text-destructive` linked with `aria-describedby`.
-- Destructive actions use the `destructive` variant and confirm first.
+- Destructive actions use the `destructive` variant and confirm first, in a `Dialog` that names the thing being
+  deleted.
 
 ## Quick example
 

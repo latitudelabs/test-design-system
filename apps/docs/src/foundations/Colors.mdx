@@ -23,6 +23,7 @@ export const usage = {
 	input: 'Input fill',
 	ring: 'Focus ring',
 	placeholder: 'Placeholders, icons, disabled. Never for readable text',
+	control: 'Unselected control track (switch off). 3:1 on cards',
 };
 
 export const Swatch = ({ color }) => (
@@ -87,8 +88,9 @@ export const dark = (name) => darkRoles.find((d) => d.name === name);
 
 ## Dark theme
 
-Add `class="dark"` to `<html>` and every role switches. Components need no changes. In dark, surfaces get
-**lighter as they rise** (page `#111111` → card `#1a1a1a` → popover `#262626`) and the accent inverts to
+Add `class="dark"` to `<html>` and every role switches. Components need no changes. In dark, surfaces are
+**lighter than the page** (page `#111111` → cards and popovers `#1a1a1a`, with fills like inputs and secondary
+buttons at `#262626`), floating surfaces get a faint outline from `shadow-raised`, and the accent inverts to
 near-white. Use the toolbar's theme switch to preview any story in dark.
 
 ## Accessibility
@@ -111,10 +113,10 @@ Dark:
 <Table
 	columns={['Text', 'On', 'Contrast']}
 	rows={[
-		['foreground', 'background / card / popover', '16.9:1 / 15.6:1 / 13.5:1'],
-		['muted-foreground', 'background / card / popover', '7.5:1 / 6.9:1 / 6.0:1'],
+		['foreground', 'background / card & popover', '16.9:1 / 15.6:1'],
+		['muted-foreground', 'background / card & popover', '7.5:1 / 6.9:1'],
 		['primary-foreground', 'primary', '15.6:1'],
-		['destructive', 'background / card', '6.8:1 / 6.3:1'],
+		['destructive', 'background / card & popover', '8.1:1 / 7.5:1'],
 		['placeholder', 'input', '4.6:1'],
 	].map((r) => r.map((c, i) => (i < 2 ? mono(c) : c)))}
 />

@@ -40,19 +40,19 @@ Read the changed or relevant components and check:
 
 Fix errors directly; they have unambiguous replacements. For warnings, pick the closest token:
 
-| Found                                            | Replace with                                                 |
-| ------------------------------------------------ | ------------------------------------------------------------ |
-| `bg-white`, `bg-[#fff]`                          | `bg-card` (surfaces) or `bg-background` (page)               |
-| `text-gray-500`, `text-[#6a6a6a]`                | `text-muted-foreground`                                      |
-| `text-black`, `text-gray-900`                    | `text-foreground`                                            |
-| `bg-black text-white`                            | `bg-primary text-primary-foreground`                         |
-| `text-red-600`, `bg-red-50`                      | `text-destructive`, `bg-destructive/10`                      |
-| `border-gray-200`                                | `border-border`                                              |
+| Found | Replace with |
+| --- | --- |
+| `bg-white`, `bg-[#fff]` | `bg-card` (surfaces) or `bg-background` (page) |
+| `text-gray-500`, `text-[#6a6a6a]` | `text-muted-foreground` |
+| `text-black`, `text-gray-900` | `text-foreground` |
+| `bg-black text-white` | `bg-primary text-primary-foreground` |
+| `text-red-600`, `bg-red-50` | `text-destructive`, `bg-destructive/10` |
+| `border-gray-200` | `border-border` |
 | `text-sm` / `text-base` / `text-lg` / `text-2xl` | `text-body` / `text-body-lg` / `text-title` / `text-heading` |
-| `font-semibold`, `font-bold`                     | `font-medium`                                                |
-| `shadow-md` on a card                            | `shadow-hairline`; floating panel → `shadow-raised`          |
-| `rounded-[10px]`                                 | nearest of `rounded-sm` 8 · `md` 12 · `lg` 16 · `xl` 24      |
-| `import X from '@lucide/svelte/icons/x'`         | `import { X } from '@latitudelabs/design-system/icons'`      |
+| `font-semibold`, `font-bold` | `font-medium` |
+| `shadow-md` on a card | `shadow-hairline`; floating panel → `shadow-raised` |
+| `rounded-[10px]` | nearest of `rounded-sm` 8 · `md` 12 · `lg` 16 · `xl` 24 |
+| `import X from '@lucide/svelte/icons/x'` | `import { X } from '@latitudelabs/design-system/icons'` |
 
 If a value has no sensible token (a chart series color, a third-party embed), leave it and add `// audit-ignore` on
 that line with a short reason, so the next review doesn't flag it again.

@@ -21,7 +21,7 @@
 	--neutral-950: #111111;
 
 	/* Status */
-	--red-400: #f97066; /* destructive on dark surfaces */
+	--red-400: #fa8a82; /* destructive on dark surfaces: 4.5:1+ on its 15% tint over popover */
 	--red-700: #b42318; /* destructive on light surfaces */
 
 	/* Brand accent — reserved for AI and brand moments (avatar, highlights). Same in both themes. */

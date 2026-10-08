@@ -14,12 +14,12 @@ Import from `@latitudelabs/design-system` unless noted.
 <Button href="/projects" variant="link">All projects</Button>
 ```
 
-| Prop                             | Values                                                                                    |
-| -------------------------------- | ----------------------------------------------------------------------------------------- |
-| `variant`                        | `default` · `secondary` · `outline` · `ghost` · `destructive` · `link`                    |
-| `size`                           | `default` (36px) · `xs` · `sm` (32px) · `lg` · `icon` · `icon-xs` · `icon-sm` · `icon-lg` |
-| `href`                           | renders an `<a>`                                                                          |
-| `disabled`, `type`, `onclick`, … | native button attributes                                                                  |
+| Prop | Values |
+| --- | --- |
+| `variant` | `default` · `secondary` · `outline` · `ghost` · `destructive` · `link` |
+| `size` | `default` (36px) · `xs` · `sm` (32px) · `lg` · `icon` · `icon-xs` · `icon-sm` · `icon-lg` |
+| `href` | renders an `<a>` |
+| `disabled`, `type`, `onclick`, … | native button attributes |
 
 Icons inside buttons: pass the icon component directly with `data-icon="inline-start"` (or `inline-end`); the
 button sizes it. One `default` button per view.
@@ -58,15 +58,65 @@ Filled style, 48px tall, 16px radius. `bind:value`, `disabled`, and all native i
 <PromptInput bind:value={draft} label="Message" onsubmit={send} />
 ```
 
-| Prop                      | Notes                                                                               |
-| ------------------------- | ----------------------------------------------------------------------------------- |
-| `value`                   | bindable                                                                            |
-| `onsubmit(value)`         | Enter or the send button; not called when empty                                     |
-| `placeholder`, `disabled` |                                                                                     |
-| `label`                   | accessible name if there's no placeholder (defaults to placeholder, then "Message") |
-| `submitLabel`             | accessible name of the send button (default "Send")                                 |
+| Prop | Notes |
+| --- | --- |
+| `value` | bindable |
+| `onsubmit(value)` | Enter or the send button; not called when empty |
+| `placeholder`, `disabled` |  |
+| `label` | accessible name if there's no placeholder (defaults to placeholder, then "Message") |
+| `submitLabel` | accessible name of the send button (default "Send") |
 
 For conversational, one-answer flows. Use `Input` + `Label` for regular forms.
+
+## Switch
+
+```svelte
+<div class="flex items-center gap-3">
+	<Switch id="notify" bind:checked={notify} />
+	<Label for="notify">Email notifications</Label>
+</div>
+```
+
+| Prop | Values |
+|---|---|
+| `checked` | bindable boolean |
+| `onCheckedChange(checked)` | called on toggle |
+| `size` | `default` (40×24) · `sm` (32×20) |
+| `disabled`, `id`, `name` | |
+
+For settings that **apply immediately**. If the change only applies after pressing Save, use a checkbox-style
+choice in the form instead. Always pair with a `Label`; the label describes the "on" state.
+
+## Dialog
+
+```svelte
+<script lang="ts">
+	import { Button, Dialog, buttonVariants } from '@latitudelabs/design-system';
+	import { Trash } from '@latitudelabs/design-system/icons';
+	let open = $state(false);
+</script>
+
+<Dialog.Root bind:open>
+	<Dialog.Trigger class={buttonVariants({ variant: 'destructive' })}>
+		<Trash data-icon="inline-start" />Delete project
+	</Dialog.Trigger>
+	<Dialog.Content>
+		<Dialog.Header>
+			<Dialog.Title>Delete “{project.name}”?</Dialog.Title>
+			<Dialog.Description>This permanently deletes the project and its responses.</Dialog.Description>
+		</Dialog.Header>
+		<Dialog.Footer>
+			<Dialog.Close class={buttonVariants({ variant: 'secondary' })}>Cancel</Dialog.Close>
+			<Button variant="destructive" onclick={() => { deleteProject(); open = false; }}>Delete project</Button>
+		</Dialog.Footer>
+	</Dialog.Content>
+</Dialog.Root>
+```
+
+`Dialog.Trigger` and `Dialog.Close` render buttons; style them with `buttonVariants({ variant, size })`. `open` is
+bindable for closing after an async action. Focus moves to the first focusable element (put the safe action first),
+Escape closes it, and focus returns to the trigger. Always include a `Dialog.Title`. Use dialogs for short decisions
+only, not long content or multi-step flows.
 
 ## Card
 
