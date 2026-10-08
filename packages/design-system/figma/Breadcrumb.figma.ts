@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/m2eh3Isz82XMQFQ38dLptm/codeconnect-playground?node-id=26-400
+// url=https://www.figma.com/design/m2eh3Isz82XMQFQ38dLptm/design-system-test?node-id=26-400
 // source=packages/design-system/src/lib/components/ui/breadcrumb/breadcrumb.svelte
 // component=Breadcrumb
 import figma from 'figma';

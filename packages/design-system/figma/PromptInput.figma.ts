@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/m2eh3Isz82XMQFQ38dLptm/codeconnect-playground?node-id=26-293
+// url=https://www.figma.com/design/m2eh3Isz82XMQFQ38dLptm/design-system-test?node-id=26-293
 // source=packages/design-system/src/lib/components/prompt-input/prompt-input.svelte
 // component=PromptInput
 import figma from 'figma';

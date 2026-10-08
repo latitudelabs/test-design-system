@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/m2eh3Isz82XMQFQ38dLptm/codeconnect-playground?node-id=32-247
+// url=https://www.figma.com/design/m2eh3Isz82XMQFQ38dLptm/design-system-test?node-id=32-247
 // source=packages/design-system/src/lib/components/ui/switch/switch.svelte
 // component=Switch
 import figma from 'figma';

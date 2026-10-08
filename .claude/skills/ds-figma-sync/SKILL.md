@@ -11,7 +11,7 @@ code. This skill finds every difference and resolves it deliberately. Never sile
 
 ## Where things are
 
-| | Code | Figma (file `m2eh3Isz82XMQFQ38dLptm`, "codeconnect playground") |
+| | Code | Figma (file `m2eh3Isz82XMQFQ38dLptm`, "design-system-test") |
 |---|---|---|
 | Raw palette | `tokens.css` `:root` (`--neutral-50`, `--red-700`, `--brand-1`…) | collection **Primitives**, mode `Value`, vars `color/neutral/50`… |
 | Color roles, light | `theme.css` `:root` (`--background: var(--neutral-50)`) | collection **Theme**, mode `Light`, vars `color/background`… (aliases to Primitives) |

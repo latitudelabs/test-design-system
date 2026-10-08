@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/m2eh3Isz82XMQFQ38dLptm/codeconnect-playground?node-id=25-410
+// url=https://www.figma.com/design/m2eh3Isz82XMQFQ38dLptm/design-system-test?node-id=25-410
 // source=@lucide/svelte/icons/arrow-up
 // component=ArrowUp
 import figma from 'figma';
