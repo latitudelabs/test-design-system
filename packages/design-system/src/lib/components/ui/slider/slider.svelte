@@ -28,7 +28,7 @@ The thumbs carry role="slider", so the accessible name goes on them.
 	data-size={size}
 	{orientation}
 	class={cn(
-		'group/slider relative flex w-full touch-none items-center select-none data-disabled:cursor-not-allowed data-disabled:opacity-50 data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col',
+		'group/slider relative flex w-full touch-none items-center select-none data-disabled:cursor-not-allowed data-disabled:opacity-50 data-horizontal:data-[size=default]:h-16 data-horizontal:data-[size=sm]:h-12 data-vertical:h-full data-vertical:min-h-40 data-vertical:flex-col data-vertical:data-[size=default]:w-16 data-vertical:data-[size=sm]:w-12',
 		className
 	)}
 	{...restProps}
@@ -50,7 +50,7 @@ The thumbs carry role="slider", so the accessible name goes on them.
 				index={thumb.index}
 				aria-label={ariaLabel}
 				aria-labelledby={ariaLabelledby}
-				class="block shrink-0 cursor-grab bg-primary ring-ring/50 transition-[box-shadow] outline-none select-none focus-visible:ring-4 active:cursor-grabbing data-disabled:pointer-events-none group-data-[size=default]/slider:data-horizontal:h-4 group-data-[size=default]/slider:data-horizontal:w-7 group-data-[size=sm]/slider:data-horizontal:h-3 group-data-[size=sm]/slider:data-horizontal:w-5 group-data-[size=default]/slider:data-vertical:h-7 group-data-[size=default]/slider:data-vertical:w-4 group-data-[size=sm]/slider:data-vertical:h-5 group-data-[size=sm]/slider:data-vertical:w-3"
+				class="block shrink-0 cursor-grab bg-primary ring-ring/50 transition-[box-shadow] outline-none select-none focus-visible:ring-4 active:cursor-grabbing data-disabled:pointer-events-none group-data-[size=default]/slider:data-horizontal:h-16 group-data-[size=default]/slider:data-horizontal:w-7 group-data-[size=sm]/slider:data-horizontal:h-12 group-data-[size=sm]/slider:data-horizontal:w-5 group-data-[size=default]/slider:data-vertical:h-7 group-data-[size=default]/slider:data-vertical:w-16 group-data-[size=sm]/slider:data-vertical:h-5 group-data-[size=sm]/slider:data-vertical:w-12"
 			/>
 		{/each}
 	{/snippet}

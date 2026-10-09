@@ -22,7 +22,7 @@ Use an \`Input\` with \`type="number"\` instead when users need to type a precis
 unbounded. Use a **progress bar** (not this) to show read-only completion: a Slider is always interactive.
 
 Anatomy (square, flat): a \`border\`-colored track, a \`control\` progress fill up to the thumb, and a rectangular
-\`primary\` thumb as tall as the track. The thumb never overhangs the track ends. Keyboard: arrow keys step,
+\`primary\` thumb four times the track height, centered on it. The thumb never overhangs the track ends. Keyboard: arrow keys step,
 Page Up/Down jump, Home/End go to min/max.`
 				}
 			}
