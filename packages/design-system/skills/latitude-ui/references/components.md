@@ -110,7 +110,7 @@ choice in the form instead. Always pair with a `Label`; the label describes the 
 | `value` | bindable `number` / `number[]` |
 | `onValueChange(value)`, `onValueCommit(value)` | while dragging / on release |
 | `min`, `max`, `step` | numbers (defaults 0, 100, 1) |
-| `size` | `default` (8px track, 20px thumb) · `sm` (6px track, 16px thumb) |
+| `size` | `default` (16px track, 28×16 thumb) · `sm` (12px track, 20×12 thumb) |
 | `orientation` | `horizontal` · `vertical` (give the parent a height) |
 | `aria-label` / `aria-labelledby` | required; forwarded to every thumb |
 | `disabled`, `name` | |

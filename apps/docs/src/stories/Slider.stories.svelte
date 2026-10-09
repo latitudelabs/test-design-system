@@ -21,8 +21,9 @@ bounded. Always pair it with a visible \`Label\` and show the current value next
 Use an \`Input\` with \`type="number"\` instead when users need to type a precise value, or the range is very large or
 unbounded. Use a **progress bar** (not this) to show read-only completion: a Slider is always interactive.
 
-Keyboard: arrow keys step, Page Up/Down jump, Home/End go to min/max. The track uses the \`control\` role so it stays
-visible on cards in both themes; the filled range uses \`primary\`.`
+Anatomy (square, flat): a \`border\`-colored track, a \`control\` progress fill up to the thumb, and a rectangular
+\`primary\` thumb as tall as the track. The thumb never overhangs the track ends. Keyboard: arrow keys step,
+Page Up/Down jump, Home/End go to min/max.`
 				}
 			}
 		}

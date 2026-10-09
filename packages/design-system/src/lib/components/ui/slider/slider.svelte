@@ -37,11 +37,11 @@ The thumbs carry role="slider", so the accessible name goes on them.
 		<span
 			data-slot="slider-track"
 			data-orientation={orientation}
-			class="relative grow overflow-hidden rounded-full bg-control data-horizontal:w-full group-data-[size=default]/slider:data-horizontal:h-2 group-data-[size=sm]/slider:data-horizontal:h-1.5 data-vertical:h-full group-data-[size=default]/slider:data-vertical:w-2 group-data-[size=sm]/slider:data-vertical:w-1.5"
+			class="relative grow bg-border data-horizontal:w-full group-data-[size=default]/slider:data-horizontal:h-4 group-data-[size=sm]/slider:data-horizontal:h-3 data-vertical:h-full group-data-[size=default]/slider:data-vertical:w-4 group-data-[size=sm]/slider:data-vertical:w-3"
 		>
 			<SliderPrimitive.Range
 				data-slot="slider-range"
-				class="absolute bg-primary select-none data-horizontal:h-full data-vertical:w-full"
+				class="absolute bg-control select-none data-horizontal:h-full data-vertical:w-full"
 			/>
 		</span>
 		{#each thumbItems as thumb (thumb.index)}
@@ -50,7 +50,7 @@ The thumbs carry role="slider", so the accessible name goes on them.
 				index={thumb.index}
 				aria-label={ariaLabel}
 				aria-labelledby={ariaLabelledby}
-				class="block shrink-0 cursor-grab rounded-full border-2 border-primary bg-card shadow-raised ring-ring/50 transition-[box-shadow] outline-none select-none group-data-[size=default]/slider:size-5 group-data-[size=sm]/slider:size-4 hover:ring-4 focus-visible:ring-4 active:cursor-grabbing data-disabled:pointer-events-none"
+				class="block shrink-0 cursor-grab bg-primary ring-ring/50 transition-[box-shadow] outline-none select-none focus-visible:ring-4 active:cursor-grabbing data-disabled:pointer-events-none group-data-[size=default]/slider:data-horizontal:h-4 group-data-[size=default]/slider:data-horizontal:w-7 group-data-[size=sm]/slider:data-horizontal:h-3 group-data-[size=sm]/slider:data-horizontal:w-5 group-data-[size=default]/slider:data-vertical:h-7 group-data-[size=default]/slider:data-vertical:w-4 group-data-[size=sm]/slider:data-vertical:h-5 group-data-[size=sm]/slider:data-vertical:w-3"
 			/>
 		{/each}
 	{/snippet}
