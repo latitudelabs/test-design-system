@@ -16,6 +16,7 @@ export { Textarea } from './components/ui/textarea/index.js';
 export { Label } from './components/ui/label/index.js';
 export { Separator } from './components/ui/separator/index.js';
 export { Switch } from './components/ui/switch/index.js';
+export { Slider } from './components/ui/slider/index.js';
 
 // Latitude components (not in shadcn).
 export { default as Icon, iconSizes, type IconSize } from './components/icon/icon.svelte';

@@ -40,6 +40,7 @@ other CSS frameworks or global styles.
 | Text field + label | `Label` + `Input` (or `Textarea`) |
 | One-answer / AI prompt field with send | `PromptInput` |
 | On/off setting that applies immediately | `Switch` + `Label` |
+| Pick an approximate value or range on a bounded scale | `Slider` + `Label` |
 | Confirm a destructive action, small focused form | `Dialog.Root` › `Dialog.Trigger` + `Dialog.Content` (`Header`, `Title`, `Description`, `Footer`, `Close`) |
 | Grouped content on the page | `Card.Root` › `Card.Header` (`Title`, `Description`, `Action`) › `Card.Content` › `Card.Footer` |
 | Ordered steps / question list | `Steps` |

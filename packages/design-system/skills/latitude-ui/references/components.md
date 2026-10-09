@@ -87,6 +87,38 @@ For conversational, one-answer flows. Use `Input` + `Label` for regular forms.
 For settings that **apply immediately**. If the change only applies after pressing Save, use a checkbox-style
 choice in the form instead. Always pair with a `Label`; the label describes the "on" state.
 
+## Slider
+
+```svelte
+<script lang="ts">
+	import { Label, Slider } from '@latitudelabs/design-system';
+	let temperature = $state(0.7);
+</script>
+
+<div class="flex flex-col gap-3">
+	<div class="flex items-center justify-between">
+		<Label id="temp-label">Temperature</Label>
+		<span class="text-body text-muted-foreground tabular-nums">{temperature.toFixed(1)}</span>
+	</div>
+	<Slider type="single" aria-labelledby="temp-label" bind:value={temperature} min={0} max={2} step={0.1} />
+</div>
+```
+
+| Prop | Values |
+|---|---|
+| `type` | `single` (value is a number) · `multiple` (value is `number[]`, one thumb per entry: a range) |
+| `value` | bindable `number` / `number[]` |
+| `onValueChange(value)`, `onValueCommit(value)` | while dragging / on release |
+| `min`, `max`, `step` | numbers (defaults 0, 100, 1) |
+| `size` | `default` (8px track, 20px thumb) · `sm` (6px track, 16px thumb) |
+| `orientation` | `horizontal` · `vertical` (give the parent a height) |
+| `aria-label` / `aria-labelledby` | required; forwarded to every thumb |
+| `disabled`, `name` | |
+
+For an **approximate value on a bounded scale** (volume, temperature, opacity, price range). Show the number next to
+the label when it matters. Use `Input type="number"` for precise or unbounded values; a Slider is always interactive,
+so don't use it to show read-only progress.
+
 ## Dialog
 
 ```svelte
