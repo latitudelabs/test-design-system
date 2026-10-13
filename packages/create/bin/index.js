@@ -83,7 +83,7 @@ function copyTemplate(src, dest, vars) {
 }
 
 /** Packs the repo's design system into <app>/.latitude and points the app at that tarball. */
-function useLocalDesignSystem(target) {
+function useLocalDesignSystem(target, pm) {
 	const vendor = path.join(target, '.latitude');
 	fs.mkdirSync(vendor, { recursive: true });
 	console.log(`${c.dim('…')} Packing local design system from ${localDesignSystem}`);
@@ -98,8 +98,10 @@ function useLocalDesignSystem(target) {
 	const pkgPath = path.join(target, 'package.json');
 	const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
 	pkg.dependencies['@latitudelabs/design-system'] = `file:.latitude/${filename}`;
+	// `npm pack` runs the package's prepack build; the install step uses the app's own package manager.
+	const add = { npm: 'npm install', pnpm: 'pnpm add', yarn: 'yarn add', bun: 'bun add' }[pm] ?? 'npm install';
 	pkg.scripts['ds:update'] =
-		`npm pack ${JSON.stringify(localDesignSystem)} --pack-destination .latitude && npm install @latitudelabs/design-system@file:.latitude/${filename}`;
+		`npm pack ${JSON.stringify(localDesignSystem)} --pack-destination .latitude && ${add} @latitudelabs/design-system@file:.latitude/${filename}`;
 	fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, '\t') + '\n');
 
 	// No registry needed: drop the GitHub Packages lines from .npmrc.
@@ -140,10 +142,10 @@ async function main() {
 		__TITLE__: toTitle(name),
 		__DS_VERSION__: `^${version}`,
 	});
-	if (opts.local) useLocalDesignSystem(target);
+	const pm = opts.pm ?? detectPackageManager();
+	if (opts.local) useLocalDesignSystem(target, pm);
 	console.log(`${c.green('✔')} Created ${c.bold(name)} in ${path.relative(process.cwd(), target) || '.'}`);
 
-	const pm = opts.pm ?? detectPackageManager();
 	let installed = false;
 	if (opts.install) {
 		if (!opts.local && !process.env.GITHUB_TOKEN) {
