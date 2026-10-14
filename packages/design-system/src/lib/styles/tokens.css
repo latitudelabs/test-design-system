@@ -26,6 +26,9 @@
 	--green-400: #6cd69b; /* success on dark surfaces: 4.5:1+ on its 15% tint over popover */
 	--green-700: #066a40; /* success on light surfaces: 4.5:1+ on its 10% tint over card or page */
 
+	/* Classic theme accent: primary actions, switches, focus. White text on it is 5.4:1. */
+	--violet-500: #8533ff;
+
 	/* Highlight — small product labels such as "(alpha)" next to the logo. Same in both themes; not for body text
 	   (2.1:1 on the light page). */
 	--orange-400: #f59528;

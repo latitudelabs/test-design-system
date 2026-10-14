@@ -43,6 +43,11 @@
 	--placeholder: var(--neutral-400);
 	--control: var(--neutral-500); /* unselected control track/outline (switch off): 3:1 on cards */
 	--radius: 16px;
+	/* Radius scale, per theme (Classic is tighter). The rounded-* utilities read these. */
+	--radius-sm-value: 8px;
+	--radius-md-value: 12px;
+	--radius-lg-value: 16px;
+	--radius-xl-value: 24px;
 
 	--sidebar: var(--neutral-50);
 	--sidebar-foreground: var(--neutral-900);
@@ -104,6 +109,55 @@
 	color-scheme: dark;
 }
 
+/*
+ * Classic theme: dark, with a violet primary, pure-white text, fainter hairlines and tighter radii. Apply with
+ * data-theme="classic" (or the `classic` class) on <html> TOGETHER with the `dark` class, so dark: variants apply.
+ * Comes after .dark so it wins at equal specificity. Mirrored in Figma as the "Classic" mode of "Theme".
+ */
+:is([data-theme='classic'], .classic) {
+	--background: var(--neutral-950);
+	--foreground: var(--neutral-0);
+	--card: var(--neutral-900);
+	--card-foreground: var(--neutral-0);
+	--popover: var(--neutral-900);
+	--popover-foreground: var(--neutral-0);
+	--primary: var(--violet-500);
+	--primary-foreground: var(--neutral-0);
+	--secondary: var(--neutral-850);
+	--secondary-foreground: var(--neutral-0);
+	--muted: var(--neutral-850);
+	--muted-foreground: var(--neutral-300);
+	--accent: var(--neutral-850);
+	--accent-foreground: var(--neutral-0);
+	--destructive: var(--red-400);
+	--success: var(--green-400);
+	--border: var(--neutral-850);
+	--input: var(--neutral-850);
+	--ring: var(--violet-500);
+	--placeholder: var(--neutral-500);
+	--control: var(--neutral-500);
+
+	--sidebar: var(--neutral-900);
+	--sidebar-foreground: var(--neutral-0);
+	--sidebar-primary: var(--violet-500);
+	--sidebar-primary-foreground: var(--neutral-0);
+	--sidebar-accent: var(--neutral-850);
+	--sidebar-accent-foreground: var(--neutral-0);
+	--sidebar-border: var(--neutral-850);
+	--sidebar-ring: var(--violet-500);
+
+	--elevation-hairline: rgb(255 255 255 / 5%);
+	--elevation-raised-outline: rgb(255 255 255 / 5%);
+	--elevation-raised-drop: rgb(0 0 0 / 60%);
+
+	--radius-sm-value: 4px;
+	--radius-md-value: 6px;
+	--radius-lg-value: 12px;
+	--radius-xl-value: 16px;
+
+	color-scheme: dark;
+}
+
 @theme inline {
 	--font-sans: 'Inter Variable', Inter, system-ui, sans-serif;
 
@@ -161,10 +215,10 @@
 	--color-brand-4: var(--brand-4);
 
 	/* Radius: inner panels, buttons, inputs, cards. */
-	--radius-sm: 8px;
-	--radius-md: 12px;
-	--radius-lg: 16px;
-	--radius-xl: 24px;
+	--radius-sm: var(--radius-sm-value);
+	--radius-md: var(--radius-md-value);
+	--radius-lg: var(--radius-lg-value);
+	--radius-xl: var(--radius-xl-value);
 
 	/* Elevation: hairline outlines cards (instead of borders); raised floats panels. */
 	--shadow-hairline: 0 0 4px var(--elevation-hairline);
