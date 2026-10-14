@@ -23,6 +23,8 @@
 	/* Status */
 	--red-400: #fa8a82; /* destructive on dark surfaces: 4.5:1+ on its 15% tint over popover */
 	--red-700: #b42318; /* destructive on light surfaces */
+	--green-400: #6cd69b; /* success on dark surfaces: 4.5:1+ on its 15% tint over popover */
+	--green-700: #066a40; /* success on light surfaces: 4.5:1+ on its 10% tint over card or page */
 
 	/* Brand accent — reserved for AI and brand moments (avatar, highlights). Same in both themes. */
 	--brand-1: #a81022;

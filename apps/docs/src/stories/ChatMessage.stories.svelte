@@ -1,6 +1,6 @@
 <script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import { ChatMessage } from '@latitudelabs/design-system';
+	import { ChatMessage, Orb } from '@latitudelabs/design-system';
 
 	const { Story } = defineMeta({
 		title: 'Components/ChatMessage',
@@ -10,7 +10,10 @@
 			docs: {
 				description: {
 					component: `A message in a conversation. Assistant messages carry the AI avatar, the only place the brand
-gradient appears in product UI.`,
+gradient appears in product UI.
+
+Pass an \`avatar\` snippet to replace the default, e.g. an animated \`Orb\` that reacts while the assistant thinks
+and speaks.`,
 				},
 			},
 		},
@@ -28,4 +31,13 @@ gradient appears in product UI.`,
 
 <Story name="User">
 	<div class="w-[430px]"><ChatMessage from="user">Yeah, let’s try that</ChatMessage></div>
+</Story>
+
+<Story name="Animated avatar">
+	<div class="w-[430px]">
+		<ChatMessage>
+			{#snippet avatar()}<Orb size={40} />{/snippet}
+			Which one do you want to dig into?
+		</ChatMessage>
+	</div>
 </Story>

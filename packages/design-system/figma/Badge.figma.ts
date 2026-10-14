@@ -9,7 +9,8 @@ const variant = instance.getEnum('Variant', {
 	Default: 'default',
 	Secondary: 'secondary',
 	Outline: 'outline',
-	Destructive: 'destructive'
+	Destructive: 'destructive',
+	Success: 'success'
 });
 
 export default {

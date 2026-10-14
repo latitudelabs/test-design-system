@@ -6,10 +6,21 @@ const instance = figma.selectedInstance;
 
 const text = instance.getString('Text');
 const isEmpty = instance.getEnum('Content', { Empty: true, Filled: false });
+const leading = instance.getEnum('Leading', { true: true, false: false });
+const onFocus = instance.getEnum('Send', { Always: false, 'On focus': true });
+const key = leading ? instance.findInstance('Kbd') : null;
+let keyCode;
+if (key && key.type === 'INSTANCE') {
+	keyCode = key.executeTemplate().example;
+}
 
 export default {
-	example: figma.code`<PromptInput ${isEmpty ? figma.code`placeholder="${text}"` : figma.code`value="${text}"`} onsubmit={(value) => {}} />`,
-	imports: ["import { PromptInput } from '@latitudelabs/design-system'"],
+	example: keyCode
+		? figma.code`<PromptInput ${isEmpty ? figma.code`placeholder="${text}"` : figma.code`value="${text}"`}${onFocus ? ' submitOnFocus' : ''} onsubmit={(value) => {}}>
+  {#snippet leading()}${keyCode}{/snippet}
+</PromptInput>`
+		: figma.code`<PromptInput ${isEmpty ? figma.code`placeholder="${text}"` : figma.code`value="${text}"`}${onFocus ? ' submitOnFocus' : ''} onsubmit={(value) => {}} />`,
+	imports: ["import { Kbd, PromptInput } from '@latitudelabs/design-system'"],
 	id: 'prompt-input',
 	metadata: { nestable: true }
 };
