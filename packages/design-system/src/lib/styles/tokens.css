@@ -26,6 +26,10 @@
 	--green-400: #6cd69b; /* success on dark surfaces: 4.5:1+ on its 15% tint over popover */
 	--green-700: #066a40; /* success on light surfaces: 4.5:1+ on its 10% tint over card or page */
 
+	/* Highlight — small product labels such as "(alpha)" next to the logo. Same in both themes; not for body text
+	   (2.1:1 on the light page). */
+	--orange-400: #f59528;
+
 	/* Brand accent — reserved for AI and brand moments (avatar, highlights). Same in both themes. */
 	--brand-1: #a81022;
 	--brand-2: #d62450;
