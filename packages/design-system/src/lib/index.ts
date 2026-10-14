@@ -25,6 +25,7 @@ export { PromptInput } from './components/prompt-input/index.js';
 export { Steps, type Step } from './components/steps/index.js';
 export { ChatMessage } from './components/chat-message/index.js';
 export { Kbd } from './components/kbd/index.js';
+export { NavItem } from './components/nav-item/index.js';
 export { ChoiceList } from './components/choice-list/index.js';
 export { SegmentedControl, type SegmentedOption } from './components/segmented-control/index.js';
 export {
