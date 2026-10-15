@@ -128,7 +128,8 @@ label `Svelte`). Note: the MCP currently saves the link but not the template; fu
 pnpm --filter @latitudelabs/design-system lint && pnpm --filter docs build && pnpm changeset
 ```
 
-Changeset: `minor` for a new component. Then commit.
+Changeset: `minor` for a new component. Add a line for it under today's date in
+`packages/design-system/CHANGELOG.md` (Storybook's Changelog page). Then commit.
 
 ## Adding an icon
 
@@ -141,4 +142,4 @@ Changeset: `minor` for a new component. Then commit.
 4. Figma: create `Icon/<Name>` on the **Icons** page in the right category section from the icon's SVG node data,
    stroke bound to `color/foreground`, description with the import line, and add it to the Button's Icon
    INSTANCE_SWAP preferred values.
-5. Check the gallery at Storybook → Foundations → Icons, then add a `patch` changeset.
+5. Check the gallery at Storybook → Foundations → Icons, then add a `patch` changeset and a CHANGELOG line.

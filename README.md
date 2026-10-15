@@ -49,6 +49,9 @@ Inside that app, `npm run ds:update` pulls in later design-system changes.
 pnpm changeset    # describe your change
 ```
 
+Also add a line under today's date in `packages/design-system/CHANGELOG.md`, which Storybook shows as its
+**Changelog** page; release versions are added above it by changesets.
+
 Merging to `main` opens a "Version packages" PR; merging that publishes both packages (they share a version) to
 GitHub Packages (`npm.pkg.github.com`).
 
