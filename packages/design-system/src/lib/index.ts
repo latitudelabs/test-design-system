@@ -28,6 +28,9 @@ export { Kbd } from './components/kbd/index.js';
 export { NavItem } from './components/nav-item/index.js';
 export { ChoiceList } from './components/choice-list/index.js';
 export { SegmentedControl, type SegmentedOption } from './components/segmented-control/index.js';
+export { Stat } from './components/stat/index.js';
+export { SentimentBar, type Sentiment } from './components/sentiment-bar/index.js';
+export { Tile } from './components/tile/index.js';
 export {
 	Orb,
 	ORB_VARIANTS,
