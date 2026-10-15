@@ -8,6 +8,8 @@ version is released, changesets adds it as a heading above this list.
 
 ### 2026-10-15
 
+- **Classic theme**: the page background is a violet-tinted near-black (`--violet-950`, `#150B1E`) instead of
+  neutral `#111111`; Figma's Classic mode matches.
 - Storybook: Getting started and the Changelog are Markdown pages with Mermaid diagrams drawn live (the design
   system map is no longer an exported image), using the same doc renderer as the Iris Storybook.
 - **Card.Section**: a collapsible, titled group inside a card. Its items sit in one row that scrolls sideways, with

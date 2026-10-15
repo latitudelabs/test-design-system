@@ -110,12 +110,12 @@
 }
 
 /*
- * Classic theme: dark, with a violet primary, pure-white text, fainter hairlines and tighter radii. Apply with
+ * Classic theme: dark, on a violet-tinted page, with a violet primary, pure-white text, fainter hairlines and tighter radii. Apply with
  * data-theme="classic" (or the `classic` class) on <html> TOGETHER with the `dark` class, so dark: variants apply.
  * Comes after .dark so it wins at equal specificity. Mirrored in Figma as the "Classic" mode of "Theme".
  */
 :is([data-theme='classic'], .classic) {
-	--background: var(--neutral-950);
+	--background: var(--violet-950);
 	--foreground: var(--neutral-0);
 	--card: var(--neutral-900);
 	--card-foreground: var(--neutral-0);

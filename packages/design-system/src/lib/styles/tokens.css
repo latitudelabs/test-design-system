@@ -28,6 +28,7 @@
 
 	/* Classic theme accent: primary actions, switches, focus. White text on it is 5.4:1. */
 	--violet-500: #8533ff;
+	--violet-950: #150b1e; /* Classic page background: near-black with a violet tint */
 
 	/* Highlight — small product labels such as "(alpha)" next to the logo. Same in both themes; not for body text
 	   (2.1:1 on the light page). */
