@@ -1,7 +1,3 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-
-<Meta title="Getting started" />
-
 # Latitude design system
 
 One set of foundations and components for every internal product, so each new product starts on-brand,
@@ -15,10 +11,92 @@ The code in `@latitudelabs/design-system` is the source of truth. The Figma libr
 
 ## How it fits together
 
-<img src="./design-system-map.svg" alt="Map of the design system: the code repo (tokens, components, icons, agent skills, Storybook, starter CLI) is the source of truth; it is mirrored to the Figma library, released through CI to GitHub Packages, and used by product teams." style={{ width: '100%', height: 'auto', border: '1px solid #e8e8e8', borderRadius: 16 }} />
+```mermaid
+---
+config:
+  theme: base
+  themeVariables:
+    fontFamily: Inter, system-ui, sans-serif
+    fontSize: 15px
+    lineColor: '#555555'
+    primaryTextColor: '#1E1E1E'
+    edgeLabelBackground: '#FFFFFF'
+  flowchart:
+    useMaxWidth: true
+    curve: basis
+    nodeSpacing: 40
+    rankSpacing: 70
+    padding: 14
+---
+flowchart LR
+    rule{{"Rule: code in this repo is the source of truth.<br/>Figma mirrors it."}}
+
+    subgraph repo["SOURCE OF TRUTH · design-system-test repo"]
+        direction TB
+        tokens[("Tokens<br/>colors, type, radius, shadows<br/>light + dark")]
+        components["Svelte components + 62 icons<br/>shadcn-svelte + Bits UI"]
+        skills["Agent skills<br/>build UI · review UI<br/>add component · sync Figma"]
+        docs["Storybook docs<br/>foundations · components · patterns"]
+        cli["Starter CLI<br/>npm create @latitudelabs"]
+    end
+
+    subgraph figma["MIRROR · Figma library"]
+        direction TB
+        figVars["Variables + text & shadow styles<br/>Light + Dark modes"]
+        figComps["Components + icon library<br/>Code Connect links to code"]
+    end
+
+    subgraph dist["DISTRIBUTION · set up, not live yet"]
+        direction TB
+        ci["CI + release<br/>GitHub Actions, changesets"]
+        registry[("GitHub Packages<br/>@latitudelabs/design-system")]
+    end
+
+    subgraph teams["PRODUCT TEAMS"]
+        direction TB
+        designers(["Designers"])
+        devs(["Developers + AI agents"])
+        apps["Product apps<br/>SvelteKit"]
+    end
+
+    rule -.- tokens
+    tokens -->|styles| components
+    components -->|documented in| docs
+
+    tokens ==>|mirrored to| figVars
+    components ==>|mirrored to| figComps
+    figVars -.->|proposals, reviewed into code| tokens
+
+    components -.->|released by| ci
+    ci -.-> registry
+    registry -.->|npm install| apps
+    cli -->|scaffolds| apps
+    skills -->|synced into each app| devs
+
+    figComps -->|used by| designers
+    docs -->|read by| devs
+    devs -->|build| apps
+
+    classDef truth fill:#CDF4D3,stroke:#2E8540,color:#1E1E1E
+    classDef mirror fill:#E9DEFF,stroke:#6B3FD4,color:#1E1E1E
+    classDef planned fill:#DCEEFF,stroke:#2F7BBF,color:#1E1E1E
+    classDef people fill:#FFF1CC,stroke:#B88A00,color:#1E1E1E
+    classDef ruleStyle fill:#1E1E1E,stroke:#1E1E1E,color:#FFFFFF
+    class tokens,components,skills,docs,cli truth
+    class figVars,figComps mirror
+    class ci,registry planned
+    class designers,devs,apps people
+    class rule ruleStyle
+    style repo fill:#F1FBF3,stroke:#2E8540
+    style figma fill:#F6F1FF,stroke:#6B3FD4
+    style dist fill:#F1F7FF,stroke:#2F7BBF,stroke-dasharray: 6 4
+    style teams fill:#FFFAEB,stroke:#B88A00
+    linkStyle 3,4 stroke:#1E1E1E,stroke-width:3px
+```
 
 **Thick** arrows: the source of truth flowing into its mirror (code to Figma). **Dotted**: a proposal, or set up
-but not live yet. **Thin**: everyday use. Source and exports live in the repo's `docs/` folder.
+but not live yet. **Thin**: everyday use. The diagram is drawn live from the Mermaid source in this page's
+Markdown (`apps/docs/src/guides/getting-started.md`); edit it there.
 
 ## Start a new product
 

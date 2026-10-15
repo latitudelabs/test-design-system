@@ -2,9 +2,9 @@
 
 Tokens, styles and Svelte components shared by Latitude's internal products, documented in Storybook.
 
-**Code in this repo is the source of truth; the Figma library mirrors it.** See [how everything fits together](docs/README.md).
-
-![Design system map](docs/design-system-map.svg)
+**Code in this repo is the source of truth; the Figma library mirrors it.** See
+[how everything fits together](apps/docs/src/guides/getting-started.md#how-it-fits-together) (a live Mermaid diagram,
+also shown in Storybook → Getting started).
 
 | Path | What |
 |---|---|

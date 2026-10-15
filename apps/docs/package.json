@@ -15,6 +15,8 @@
     "@storybook/svelte-vite": "^10.6.1",
     "@sveltejs/vite-plugin-svelte": "^7.3.1",
     "@tailwindcss/vite": "^4.3.3",
+    "marked": "^18.1.1",
+    "mermaid": "^12.2.0",
     "storybook": "^10.6.1",
     "svelte": "^5.57.2",
     "tailwindcss": "^4.3.3",
