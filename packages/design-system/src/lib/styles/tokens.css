@@ -28,7 +28,14 @@
 
 	/* Classic theme accent: primary actions, switches, focus. White text on it is 5.4:1. */
 	--violet-500: #8533ff;
-	--violet-950: #150b1e; /* Classic page background: near-black with a violet tint */
+
+	/* Mauve: violet-tinted greys for the Classic theme. Same lightness (and contrast) as the neutral step with the
+	   same number, with the page's violet hue; the tint fades as the greys get lighter. */
+	--mauve-300: #a6a1ab;
+	--mauve-500: #918b98;
+	--mauve-850: #2a2232;
+	--mauve-900: #1e1625;
+	--mauve-950: #150b1e; /* Classic page background */
 
 	/* Highlight — small product labels such as "(alpha)" next to the logo. Same in both themes; not for body text
 	   (2.1:1 on the light page). */

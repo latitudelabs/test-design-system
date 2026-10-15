@@ -8,8 +8,9 @@ version is released, changesets adds it as a heading above this list.
 
 ### 2026-10-15
 
-- **Classic theme**: the page background is a violet-tinted near-black (`--violet-950`, `#150B1E`) instead of
-  neutral `#111111`; Figma's Classic mode matches.
+- **Classic theme** is violet-tinted: a new **mauve** scale (`--mauve-300/500/850/900/950`) replaces the neutral
+  greys in Classic. Each step keeps its neutral's lightness and contrast and takes the page's violet hue; the page
+  itself is `--mauve-950` (`#150B1E`, was `#111111`). Figma's Classic mode matches.
 - Storybook: Getting started and the Changelog are Markdown pages with Mermaid diagrams drawn live (the design
   system map is no longer an exported image), using the same doc renderer as the Iris Storybook.
 - **Card.Section**: a collapsible, titled group inside a card. Its items sit in one row that scrolls sideways, with
